@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cluo.mybatis.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cluo.mybatis.pojo.UserInfo">
+    <id column="userId" jdbcType="BIGINT" property="userid" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="phone" jdbcType="BIGINT" property="phone" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userId, userName, age, phone, desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userId = #{userid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user
+    where userId = #{userid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cluo.mybatis.pojo.UserInfo">
+    insert into user (userId, userName, age, 
+      phone, desc)
+    values (#{userid,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{phone,jdbcType=BIGINT}, #{desc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cluo.mybatis.pojo.UserInfo">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="desc != null">
+        desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=BIGINT},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cluo.mybatis.pojo.UserInfo">
+    update user
+    <set>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=BIGINT},
+      </if>
+      <if test="desc != null">
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cluo.mybatis.pojo.UserInfo">
+    update user
+    set userName = #{username,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=BIGINT},
+      desc = #{desc,jdbcType=VARCHAR}
+    where userId = #{userid,jdbcType=BIGINT}
+  </update>
+</mapper>
