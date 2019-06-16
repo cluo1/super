@@ -26,7 +26,7 @@ CREATE TABLE `user` (
   `phone` bigint(31) DEFAULT NULL,
   `desc` varchar(80) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
