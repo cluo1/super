@@ -53,7 +53,7 @@
             <version>1.1.1</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.mybatis</groupId>
+            <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.1.1</version>
         </dependency>
