@@ -3,12 +3,7 @@ package com.cluo.test;
 import org.junit.Test;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.regex.Pattern;
 
 public class DemoTest {
     private static String TTRD_ROLLING_PREVIOUS_RULE_INSERT = "insert into ttrd_rolling_previous_rule " +
