@@ -1,4 +1,4 @@
-package com.cluo.aop;
+package com.luo.aop;
 
 import com.luo.aop.config.AopConfig;
 import com.luo.aop.dao.Dao;

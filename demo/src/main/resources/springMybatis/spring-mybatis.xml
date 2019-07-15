@@ -28,7 +28,7 @@
 
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.cluo.mybatis.mapper"/>
+        <property name="basePackage" value="com.luo.mybatis.mapper"/>
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

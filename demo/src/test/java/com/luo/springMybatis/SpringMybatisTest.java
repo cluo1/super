@@ -1,4 +1,4 @@
-package com.cluo.springMybatis;
+package com.luo.springMybatis;
 
 import com.luo.mybatis.mapper.UserMapper;
 import com.luo.mybatis.pojo.User;

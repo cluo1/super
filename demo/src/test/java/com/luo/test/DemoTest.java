@@ -1,4 +1,4 @@
-package com.cluo.test;
+package com.luo.test;
 
 import org.junit.Test;
 

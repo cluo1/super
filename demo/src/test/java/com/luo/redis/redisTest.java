@@ -1,4 +1,4 @@
-package com.cluo.redis;
+package com.luo.redis;
 
 import com.luo.DemoApplication;
 import com.luo.redis.util.RedisUtil;
