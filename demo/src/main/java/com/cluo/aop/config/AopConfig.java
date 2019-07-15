@@ -8,7 +8,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 @Configuration
 @ComponentScan("com.cluo.aop")
 //@EnableAspectJAutoProxy
-@ImportResource("classpath*:/springMybatis/spring-mybatis.xml")
+//@ImportResource("classpath*:/springMybatis/spring-mybatis.xml")
 public class AopConfig {
 
     @Autowired

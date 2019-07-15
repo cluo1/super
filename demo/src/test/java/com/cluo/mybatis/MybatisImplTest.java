@@ -2,7 +2,6 @@ package com.cluo.mybatis;
 
 
 import com.cluo.mybatis.mapper.UserMapper;
-import com.cluo.mybatis.pojo.User;
 import com.cluo.mybatis.session.Configuration;
 import com.cluo.mybatis.session.SqlSession;
 import com.cluo.mybatis.session.SqlSessionFactory;
