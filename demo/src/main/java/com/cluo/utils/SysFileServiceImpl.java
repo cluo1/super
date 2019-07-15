@@ -61,7 +61,7 @@ import com.joyintech.utils.date.DateUtil;*/
 @Service
 public class SysFileServiceImpl{
 
-    @Value("${filepath}")
+//    @Value("${filepath}")
     private String filepath;
 
 /*    *//**
