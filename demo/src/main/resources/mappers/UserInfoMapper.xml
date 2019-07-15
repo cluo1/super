@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cluo.mybatis.mapper.UserInfoMapper">
-  <resultMap id="BaseResultMap" type="com.cluo.mybatis.pojo.UserInfo">
+<mapper namespace="com.luo.mybatis.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.luo.mybatis.pojo.UserInfo">
     <id column="userId" jdbcType="BIGINT" property="userid" />
     <result column="userName" jdbcType="VARCHAR" property="username" />
     <result column="age" jdbcType="INTEGER" property="age" />
@@ -21,13 +21,13 @@
     delete from user
     where userId = #{userid,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.cluo.mybatis.pojo.UserInfo">
+  <insert id="insert" parameterType="com.luo.mybatis.pojo.UserInfo">
     insert into user (userId, userName, age, 
       phone, desc)
     values (#{userid,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
       #{phone,jdbcType=BIGINT}, #{desc,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.cluo.mybatis.pojo.UserInfo">
+  <insert id="insertSelective" parameterType="com.luo.mybatis.pojo.UserInfo">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userid != null">
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cluo.mybatis.pojo.UserInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.luo.mybatis.pojo.UserInfo">
     update user
     <set>
       <if test="username != null">
@@ -82,7 +82,7 @@
     </set>
     where userId = #{userid,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cluo.mybatis.pojo.UserInfo">
+  <update id="updateByPrimaryKey" parameterType="com.luo.mybatis.pojo.UserInfo">
     update user
     set userName = #{username,jdbcType=VARCHAR},
       age = #{age,jdbcType=INTEGER},

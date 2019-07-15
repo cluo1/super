@@ -1,11 +1,11 @@
 package com.cluo.mybatis;
 
 
-import com.cluo.mybatis.mapper.UserMapper;
-import com.cluo.mybatis.session.Configuration;
-import com.cluo.mybatis.session.SqlSession;
-import com.cluo.mybatis.session.SqlSessionFactory;
-import com.cluo.mybatis.session.SqlSessionFactoryBuilder;
+import com.luo.mybatis.mapper.UserMapper;
+import com.luo.mybatis.session.Configuration;
+import com.luo.mybatis.session.SqlSession;
+import com.luo.mybatis.session.SqlSessionFactory;
+import com.luo.mybatis.session.SqlSessionFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 

@@ -1,7 +1,7 @@
 package com.cluo.aop;
 
-import com.cluo.aop.config.AopConfig;
-import com.cluo.aop.dao.Dao;
+import com.luo.aop.config.AopConfig;
+import com.luo.aop.dao.Dao;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

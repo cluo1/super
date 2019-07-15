@@ -41,7 +41,7 @@
 
     <aop:config>
         <aop:advisor
-                pointcut="execution(* com.cluo.aop.dao.*.*(..)))"
+                pointcut="execution(* com.luo.aop.dao.*.*(..)))"
                 advice-ref="tx-advice"/>
     </aop:config>
 

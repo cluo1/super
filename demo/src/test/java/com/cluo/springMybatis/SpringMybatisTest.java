@@ -1,7 +1,7 @@
 package com.cluo.springMybatis;
 
-import com.cluo.mybatis.mapper.UserMapper;
-import com.cluo.mybatis.pojo.User;
+import com.luo.mybatis.mapper.UserMapper;
+import com.luo.mybatis.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

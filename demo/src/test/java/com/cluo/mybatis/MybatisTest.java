@@ -1,7 +1,7 @@
 package com.cluo.mybatis;
 
-import com.cluo.mybatis.mapper.UserMapper;
-import com.cluo.mybatis.pojo.User;
+import com.luo.mybatis.mapper.UserMapper;
+import com.luo.mybatis.pojo.User;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
@@ -21,7 +21,7 @@ public class MybatisTest {
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession session = sqlSessionFactory.openSession();
-        User user = session.selectOne("com.cluo.mybatis.mapper.UserMapper.selectUser", 1);
+        User user = session.selectOne("UserMapper.selectUser", 1);
 //        log.info("user:{}",user);
 
     }

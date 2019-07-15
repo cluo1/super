@@ -1,7 +1,7 @@
 package com.cluo.redis;
 
-import com.cluo.DemoApplication;
-import com.cluo.redis.util.RedisUtil;
+import com.luo.DemoApplication;
+import com.luo.redis.util.RedisUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
