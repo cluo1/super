@@ -13,8 +13,9 @@ public class DemoController {
 
     @Autowired
     DemoService demoService;
+
     @RequestMapping("/hello")
-    public String hello() throws Exception {
+    public String hello(){
         String feign = demoService.hello("feign");
         return feign;
     }
