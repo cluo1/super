@@ -12,7 +12,7 @@
 
     <modules>
         <module>demo</module>
-        <module>springboot01</module>
+        <module>feignserver</module>
         <module>eurekaserver</module>
     </modules>
 
