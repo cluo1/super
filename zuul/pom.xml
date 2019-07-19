@@ -8,9 +8,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.luo</groupId>
-    <artifactId>zull</artifactId>
+    <artifactId>zuul</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>zull</name>
+    <name>zuul</name>
 
 
     <dependencies>
