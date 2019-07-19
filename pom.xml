@@ -15,7 +15,7 @@
         <module>feignserver</module>
         <module>eurekaserver</module>
         <module>configserver</module>
-        <module>zuul</module>
+        <module>getewayserver</module>
     </modules>
 
     <groupId>com.luo</groupId>
