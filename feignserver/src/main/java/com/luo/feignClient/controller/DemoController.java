@@ -1,5 +1,6 @@
 package com.luo.feignClient.controller;
 
+import com.luo.feignClient.entity.User;
 import com.luo.feignClient.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +16,8 @@ public class DemoController {
     DemoService demoService;
 
     @RequestMapping("/hello")
-    public String hello(){
-        String feign = demoService.hello("feign");
+    public String hello(User user){
+        String feign = demoService.hello(user);
         return feign;
     }
 
