@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: test
+---
+server:
+  port: 8010
+spring:
+  profiles:test
+  application:
+    name: config-test
+---
+spring:
+  profiles:prod
+  application:
+    name: config-prod
+server:
+  port: 8012
