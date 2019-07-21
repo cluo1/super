@@ -8,15 +8,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.luo</groupId>
-<<<<<<< HEAD:zuul/pom.xml
-    <artifactId>zuul</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>zuul</name>
-=======
     <artifactId>getewayserver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>getewayserver</name>
->>>>>>> origin/dev:getewayserver/pom.xml
 
 
     <dependencies>
