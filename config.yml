@@ -2,15 +2,15 @@ spring:
   profiles:
     active: test
 ---
-server:
-  port: 8010
 spring:
-  profiles:test
+  profiles: test
   application:
     name: config-test
+server:
+  port: 8010
 ---
 spring:
-  profiles:prod
+  profiles: prod
   application:
     name: config-prod
 server:
