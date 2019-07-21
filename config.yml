@@ -3,6 +3,13 @@ spring:
     active: test
 ---
 spring:
+  profiles: dev
+  application:
+    name: config-dev
+server:
+  port: 8008
+---
+spring:
   profiles: test
   application:
     name: config-test
