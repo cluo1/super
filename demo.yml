@@ -4,7 +4,8 @@ spring:
   application:
     name: demo-server
 ---
-
+spring:
+  profiles: dev
 server:
   port: 8008
 ---
