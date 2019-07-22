@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: test
+  application:
+    name: demo-server
+---
+
+server:
+  port: 8008
+---
+spring:
+  profiles: test
+server:
+  port: 8010
+---
+spring:
+  profiles: prod
+server:
+  port: 8012
