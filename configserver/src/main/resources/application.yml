@@ -2,17 +2,26 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8000/eureka/
+server:
+  port: 8001
 spring:
   application:
     name: config-server
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/cluo1/super.git
-          username: cluo1
-          password: ln37807090
-      label: master
-server:
-  port: 8001
-
+#        采用git服务配置中心
+#        git:
+#          uri: https://github.com/cluo1/super.git
+#          username: cluo1
+#          password: ln37807090
+#     label: master
+#          采用数据库配置中心
+          jdbc.sql: SELECT property_name, property_value from PROPERTIES where APPLICATION=? and PROFILE=? and LABEL=?
+  datasource:
+    url: jdbc:mysql://localhost:3306/super
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  profiles:
+    active: jdbc
