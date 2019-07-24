@@ -17,7 +17,7 @@ spring:
 #          password: ln37807090
 #     label: master
 #          采用数据库配置中心
-          jdbc.sql: SELECT property_name, property_value from PROPERTIES where APPLICATION=? and PROFILE=? and LABEL=?
+          jdbc.sql: SELECT property_name, property_value from super_properties where APPLICATION=? and PROFILE=? and LABEL=?
   datasource:
     url: jdbc:mysql://localhost:3306/super
     username: root
