@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50640
 File Encoding         : 65001
 
-Date: 2019-07-24 19:32:43
+Date: 2019-07-24 20:18:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,13 +20,14 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `super_user`;
 CREATE TABLE `super_user` (
-  `userId` int(11) NOT NULL AUTO_INCREMENT,
-  `userName` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of super_user
 -- ----------------------------
+INSERT INTO `super_user` VALUES ('1', 'super', 'super', '18656692693');
