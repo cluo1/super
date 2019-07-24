@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50640
 File Encoding         : 65001
 
-Date: 2019-07-23 18:03:12
+Date: 2019-07-24 14:47:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,21 +20,34 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `properties`;
 CREATE TABLE `properties` (
-  `id` int(11) NOT NULL,
+  `application` varchar(50) NOT NULL,
   `property_name` varchar(50) NOT NULL,
   `property_value` varchar(500) NOT NULL,
-  `application` varchar(50) NOT NULL,
   `profile` varchar(50) NOT NULL,
   `label` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`application`,`profile`,`property_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of properties
 -- ----------------------------
-INSERT INTO `properties` VALUES ('1', 'server.port', '8080', 'demo-server', 'dev', 'master');
-INSERT INTO `properties` VALUES ('2', 'server.port', '8081', 'demo-server', 'test', 'master');
-INSERT INTO `properties` VALUES ('3', 'spring.datasource.druid.url', 'jdbc:mysql://localhost:3306/super?useUnicode=true&characterEncoding=utf8', 'super-user-server', 'dev', 'master');
-INSERT INTO `properties` VALUES ('4', 'spring.datasource.druid.username', 'root', 'super-user-server', 'dev', 'master');
-INSERT INTO `properties` VALUES ('5', 'spring.datasource.druid.password', 'root', 'super-user-server', 'dev', 'master');
-INSERT INTO `properties` VALUES ('6', 'mybatis.mapper-locations', 'classpath*:mybatis/*Mapper.xml', 'super-user-server', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'eureka.client.serviceUrl.defaultZone', 'http://localhost:8000/eureka/', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'server.port', '8020', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'spring.cloud.bus.enabled', 'true', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'spring.cloud.bus.trace.enableds', 'true', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'spring.rabbitmq.host', 'localhost', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'spring.rabbitmq.port', '5672', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'spring.rabbitmq.username', 'guest', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'spring.rabbitmq.password', 'guest', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'management.endpoints.web.exposure.include', '*', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'management.endpoints.web.cors.allowed-methods', '*', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'management.endpoints.web.cors.allowed-origins', '*', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'zuul.ignored-services', '*', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'zuul.routes.config-server', '/config-service/**', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'zuul.routes.demo-server', '/demo-service/**', 'dev', 'master');
+INSERT INTO `properties` VALUES ('geteway-server', 'zuul.routes.feign-server', '/feign-service/**', 'dev', 'master');
+
+
+INSERT INTO `properties` VALUES ('demo-server', 'server.port', '8081', 'dev', 'master');
+INSERT INTO `properties` VALUES ('demo-server', 'eureka.client.serviceUrl.defaultZone', 'http://localhost:8000/eureka/', 'dev', 'master');
+
