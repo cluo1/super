@@ -31,3 +31,5 @@ CREATE TABLE `super_user` (
 -- Records of super_user
 -- ----------------------------
 INSERT INTO `super_user` VALUES ('1', 'super', 'super', '18656692693');
+INSERT INTO `super_user` VALUES ('2', 'super2', 'super2', '18656692693');
+INSERT INTO `super_user` VALUES ('3', 'super3', 'super3', '18656692693');

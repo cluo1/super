@@ -19,7 +19,7 @@
         </environment>
     </environments>
     <mappers>
-        <!--<mapper resource="mappers/UserMapper.xml"/>-->
+        <!--<mapper resource="mapper/UserMapper.xml"/>-->
         <mapper class="com.luo.mybatis.mapper.UserMapper"></mapper>
     </mappers>
 </configuration>

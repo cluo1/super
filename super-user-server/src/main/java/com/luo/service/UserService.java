@@ -1,12 +1,11 @@
-package com.luo.mapper;
+package com.luo.service;
 
 import com.luo.entity.User;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
-public interface UserMapper {
+public interface UserService {
+
     int deleteByPrimaryKey(Integer userId);
 
     int insert(User record);

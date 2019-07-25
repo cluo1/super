@@ -26,8 +26,8 @@ public class Configuration {
         try {
             /*Document document = new SAXReader().read(inputStream);
             Element root = document.getRootElement();
-            List<Element> mappers = root.element("mappers").elements("mapper");
-            for(Element mapper : mappers){
+            List<Element> mapper = root.element("mapper").elements("mapper");
+            for(Element mapper : mapper){
                 if(mapper.attribute("resource") != null){
                     mapperRegistry.setKnownMappers(loadXMLConfigruration(mapper.attribute("resource").getText()));
                 }
