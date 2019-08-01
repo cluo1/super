@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.luo.mapper.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.luo.entity.Menu">
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="url" property="url" jdbcType="VARCHAR"/>
+    <result column="path" property="path" jdbcType="VARCHAR"/>
+    <result column="component" property="component" javaType="java.lang.Object"/>
+    <result column="name" property="name" jdbcType="VARCHAR"/>
+    <result column="iconCls" property="iconCls" jdbcType="VARCHAR"/>
+    <result column="keepAlive" property="keepAlive" jdbcType="BIT"/>
+    <result column="parent_Id" property="parentId" jdbcType="INTEGER"/>
+    <association property="meta" javaType="com.luo.entity.MenuMeta">
+      <result column="keepAlive" property="keepAlive"/>
+      <result column="requireAuth" property="requireAuth"/>
+    </association>
+    <collection property="roles" ofType="com.luo.entity.Role">
+      <id column="role_id" property="id"/>
+      <result column="role_name_en" property="nameEn"/>
+      <result column="role_name_zh" property="nameZh"/>
+    </collection>
+    <collection property="children" ofType="com.luo.entity.Menu">
+      <id column="id2" property="id"/>
+      <result column="path2" property="path" jdbcType="VARCHAR"/>
+      <result column="component2" property="component" jdbcType="VARCHAR"/>
+      <result column="name2" property="name" jdbcType="VARCHAR"/>
+      <result column="iconCls2" property="iconCls" jdbcType="VARCHAR"/>
+      <association property="meta" javaType="com.luo.entity.MenuMeta">
+        <result column="keepAlive2" property="keepAlive"/>
+        <result column="requireAuth2" property="requireAuth"/>
+      </association>
+      <collection property="children" ofType="com.luo.entity.Menu">
+        <id column="id3" property="id"/>
+        <result column="name3" property="name" jdbcType="VARCHAR"/>
+      </collection>
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, url, path, component, name, iconCls, keepAlive, requireAuth, parent_Id, enabled
+  </sql>
+  <select id="getAllMenu" resultMap="BaseResultMap" >
+    select m.*, r.role_id, r.role_name_en, r.role_name_zh
+      from super_menu m
+      left join super_menu_role mr
+        on m. id = mr.menu_id
+      left join super_role r
+        on mr.role_id = r.role_id
+     WHERE m.enabled = true
+     order by m.id desc
+  </select>
+
+  <select id="getMenusByUserId" resultMap="BaseResultMap" >
+      select m1. id,
+         m1. path,
+         m1. component,
+         m1. iconCls,
+         m1. name,
+         m1. requireAuth,
+         m2. component as component2,
+         m2. iconCls as iconCls2,
+         m2. keepAlive as keepAlive2,
+         m2. name as name2,
+         m2. path as path2,
+         m2. requireAuth as requireAuth2
+      from super_menu m1, super_menu m2
+       where m1. id = m2. parent_Id
+         and m1. id != 1
+         and m2. id in (select mr. menu_id
+                      from super_user_role ur, super_menu_role mr
+                     where ur.role_id = mr.role_id
+                      and ur. user_id = #{userId}
+                    )
+         and m2. enabled = true
+       order by m1.id, m2.id
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from super_menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.luo.entity.Menu" >
+    insert into super_menu (id, url, path, 
+      component, name, iconCls, 
+      keepAlive, requireAuth, parent_Id, 
+      enabled)
+    values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{component,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{iconcls,jdbcType=VARCHAR}, 
+      #{keepalive,jdbcType=BIT}, #{requireauth,jdbcType=BIT}, #{parentId,jdbcType=INTEGER}, 
+      #{enabled,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.luo.entity.Menu" >
+    insert into super_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="component != null" >
+        component,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="iconcls != null" >
+        iconCls,
+      </if>
+      <if test="keepalive != null" >
+        keepAlive,
+      </if>
+      <if test="requireauth != null" >
+        requireAuth,
+      </if>
+      <if test="parentId != null" >
+        parent_Id,
+      </if>
+      <if test="enabled != null" >
+        enabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null" >
+        #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="iconcls != null" >
+        #{iconcls,jdbcType=VARCHAR},
+      </if>
+      <if test="keepalive != null" >
+        #{keepalive,jdbcType=BIT},
+      </if>
+      <if test="requireauth != null" >
+        #{requireauth,jdbcType=BIT},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.luo.entity.Menu" >
+    update super_menu
+    <set >
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null" >
+        component = #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="iconcls != null" >
+        iconCls = #{iconcls,jdbcType=VARCHAR},
+      </if>
+      <if test="keepalive != null" >
+        keepAlive = #{keepalive,jdbcType=BIT},
+      </if>
+      <if test="requireauth != null" >
+        requireAuth = #{requireauth,jdbcType=BIT},
+      </if>
+      <if test="parentId != null" >
+        parent_Id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="enabled != null" >
+        enabled = #{enabled,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.luo.entity.Menu" >
+    update super_menu
+    set url = #{url,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      component = #{component,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      iconCls = #{iconcls,jdbcType=VARCHAR},
+      keepAlive = #{keepalive,jdbcType=BIT},
+      requireAuth = #{requireauth,jdbcType=BIT},
+      parent_Id = #{parentId,jdbcType=INTEGER},
+      enabled = #{enabled,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

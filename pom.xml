@@ -17,6 +17,7 @@
         <module>configserver</module>
         <module>gatewayserver</module>
         <module>super-common</module>
+        <module>super-system</module>
     </modules>
 
     <groupId>com.luo</groupId>
