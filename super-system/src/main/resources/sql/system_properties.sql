@@ -1,0 +1,2 @@
+INSERT INTO `super_properties` VALUES ('gateway-server', 'zuul.routes.system-server', '/system-service/**', 'dev', 'master');
+INSERT INTO `super_properties` VALUES ('system-server', 'server.port', '8082', 'dev', 'master');
