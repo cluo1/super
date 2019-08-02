@@ -5,8 +5,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
-@RequestMapping("/demo")
+@RequestMapping("/config")
 public class DemoController {
 
     @RequestMapping("/feign")
@@ -15,6 +18,14 @@ public class DemoController {
             return "feign";
         }
         return "hello";
+    }
+    @RequestMapping("/sysmenu")
+    public List<String> sysmenu() {
+//        return menuService.getMenusByUserId();
+
+        return  new ArrayList<String>(){{
+            add("test");
+        }};
     }
 
     @RequestMapping("/hello")

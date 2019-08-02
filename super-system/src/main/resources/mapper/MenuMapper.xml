@@ -85,7 +85,7 @@
       enabled)
     values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
       #{component,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{iconcls,jdbcType=VARCHAR}, 
-      #{keepalive,jdbcType=BIT}, #{requireauth,jdbcType=BIT}, #{parentId,jdbcType=INTEGER}, 
+      #{keepalive,jdbcType=BIT}, #{requireauth,jdbcType=BIT}, #{parentId,jdbcType=INTEGER},
       #{enabled,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.luo.entity.Menu" >

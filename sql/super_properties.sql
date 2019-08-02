@@ -34,7 +34,7 @@ CREATE TABLE `super_properties` (
 INSERT INTO `super_properties` VALUES ('demo-server', 'server.port', '8081', 'dev', 'master');
 INSERT INTO `super_properties` VALUES ('feign-server', 'feign.hystrix.enabled', 'true', 'dev', 'master');
 INSERT INTO `super_properties` VALUES ('feign-server', 'server.connection-timeout', '10000', 'dev', 'master');
-INSERT INTO `super_properties` VALUES ('feign-server', 'server.port', '8082', 'dev', 'master');
+INSERT INTO `super_properties` VALUES ('feign-server', 'server.port', '8081', 'dev', 'master');
 INSERT INTO `super_properties` VALUES ('gateway-server', 'management.endpoints.web.cors.allowed-methods', '*', 'dev', 'master');
 INSERT INTO `super_properties` VALUES ('gateway-server', 'management.endpoints.web.cors.allowed-origins', '*', 'dev', 'master');
 INSERT INTO `super_properties` VALUES ('gateway-server', 'management.endpoints.web.exposure.include', '*', 'dev', 'master');
