@@ -16,7 +16,7 @@ import java.util.List;
  * 主要用来获取一些配置信息
  */
 @RestController
-@RequestMapping("/config")
+@RequestMapping("/menu")
 public class ConfigController {
     @Autowired
     MenuService menuService;
