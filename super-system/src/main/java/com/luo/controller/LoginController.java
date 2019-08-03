@@ -1,6 +1,7 @@
 package com.luo.controller;
 
 import com.luo.common.UserUtils;
+import com.luo.entity.RespBean;
 import com.luo.entity.User;
 import com.luo.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
  * 临时登录使用类
  */
 @RestController
-@RequestMapping("/login")
 public class LoginController {
 
     @Autowired
@@ -20,13 +20,19 @@ public class LoginController {
     @Autowired
     UserUtils userUtils;
 
-    @RequestMapping("/user")
-    public User findByUser(String username,String password) throws Exception {
+    @RequestMapping("/login")
+    public RespBean findByUser(String username,String password) throws Exception {
         User user = userMapper.loadUserByUsername(username);
         if(user == null){
             throw new Exception("用户不存在");
         }
         userUtils.setUser(user);
-        return user;
+
+        return RespBean.ok("登录成功！", user);
+    }
+
+    @RequestMapping("/logout")
+    public RespBean logout(String username,String password) throws Exception {
+        return RespBean.ok("注销成功！");
     }
 }
