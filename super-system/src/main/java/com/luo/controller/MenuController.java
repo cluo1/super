@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/menu")
-public class ConfigController {
+public class MenuController {
     @Autowired
     MenuService menuService;
     @RequestMapping("/sysmenu")
