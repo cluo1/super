@@ -8,9 +8,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.luo</groupId>
-    <artifactId>getewayserver</artifactId>
+    <artifactId>gatewayserver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>getewayserver</name>
+    <name>gatewayserver</name>
 
 
     <dependencies>
