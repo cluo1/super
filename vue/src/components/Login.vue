@@ -34,18 +34,10 @@
       }
     },
     methods: {
-      submitClick1(){
-         this.postRequest('demo/config/sysmenu', {
-          username: this.loginForm.username,
-          password: this.loginForm.password
-        }).then(resp=> {
-            console.log('点击')
-        });
-      },
       submitClick: function () {
         var _this = this;
         this.loading = true;
-        this.postRequest('login', {
+        this.postRequest('/system/login', {
           username: this.loginForm.username,
           password: this.loginForm.password
         }).then(resp=> {
