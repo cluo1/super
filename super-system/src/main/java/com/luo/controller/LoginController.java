@@ -24,15 +24,15 @@ public class LoginController {
     public RespBean findByUser(String username,String password) throws Exception {
         User user = userMapper.loadUserByUsername(username);
         if(user == null){
-            throw new Exception("用户不存在");
+            return RespBean.ok("用户不存在！", user);
         }
-        userUtils.setUser(user);
 
+        userUtils.setUser(user);
         return RespBean.ok("登录成功！", user);
     }
 
     @RequestMapping("/logout")
-    public RespBean logout(String username,String password) throws Exception {
+    public RespBean logout() throws Exception {
         return RespBean.ok("注销成功！");
     }
 }
