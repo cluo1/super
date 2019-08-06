@@ -16,6 +16,7 @@
         <module>eurekaserver</module>
         <module>configserver</module>
         <module>gatewayserver</module>
+        <module>super-activiti</module>
         <module>super-common</module>
         <module>super-system</module>
     </modules>
