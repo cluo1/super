@@ -13,6 +13,7 @@ public class SuperActivitiApplication {
         SpringApplication.run(SuperActivitiApplication.class, args);
         System.out.println("a");
         System.out.println("b");
+        System.out.println("c");
     }
 
 }
