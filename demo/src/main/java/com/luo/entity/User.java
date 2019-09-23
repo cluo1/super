@@ -1,11 +1,14 @@
 package com.luo.entity;
 
+import java.util.List;
+
 public class User {
 
     private int userId;
 
     private String userName;
 
+    private List<User> stringList;
     public User(){}
 
     public User(int userId, String userName) {
@@ -27,6 +30,14 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public List<User> getStringList() {
+        return stringList;
+    }
+
+    public void setStringList(List<User> stringList) {
+        this.stringList = stringList;
     }
 
     @Override
