@@ -47,5 +47,5 @@ INSERT INTO `super_properties` VALUES ('gateway-server', 'spring.rabbitmq.port',
 INSERT INTO `super_properties` VALUES ('gateway-server', 'spring.rabbitmq.username', 'guest', 'dev', 'master');
 INSERT INTO `super_properties` VALUES ('gateway-server', 'zuul.ignored-services', '*', 'dev', 'master');
 INSERT INTO `super_properties` VALUES ('gateway-server', 'zuul.routes.config-server', '/config/**', 'dev', 'master');
-INSERT INTO `super_properties` VALUES ('gateway-server', 'zuul.routes.demo-server', '/demo-service/**', 'dev', 'master');
-INSERT INTO `super_properties` VALUES ('gateway-server', 'zuul.routes.feign-server', '/feign-service/**', 'dev', 'master');
+INSERT INTO `super_properties` VALUES ('gateway-server', 'zuul.routes.demo-server', '/demo/**', 'dev', 'master');
+INSERT INTO `super_properties` VALUES ('gateway-server', 'zuul.routes.feign-server', '/feign/**', 'dev', 'master');
