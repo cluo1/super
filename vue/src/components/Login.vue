@@ -37,7 +37,7 @@
       submitClick: function () {
         var _this = this;
         this.loading = true;
-        this.postRequest('/system/login', {
+        this.postRequest('/super/system/login', {
           username: this.loginForm.username,
           password: this.loginForm.password
         }).then(resp=> {

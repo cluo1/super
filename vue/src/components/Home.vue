@@ -99,7 +99,7 @@
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            _this.getRequest("/system/logout");
+            _this.getRequest("/super/system/logout");
             _this.$store.commit('logout');
             _this.$router.replace({path: '/'});
           }).catch(() => {

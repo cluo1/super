@@ -11,18 +11,18 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/system': {
+      '/super/system': {
         target: 'http://127.0.0.1:8020',
         changeOrigin: true,
         pathRewrite: {
-          '^/system': 'system'
+          '^/super': ''
         },
       },
-      '/demo': {
+      '/super/demo': {
         target: 'http://127.0.0.1:8020',
         changeOrigin: true,
         pathRewrite: {
-          '^/demo': ''
+          '^/super': ''
         },
       },
       // '/': {
