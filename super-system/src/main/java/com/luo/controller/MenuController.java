@@ -18,9 +18,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/menu")
 public class MenuController {
+
     @Autowired
     MenuService menuService;
     @RequestMapping("/sysmenu")
+
     public List<Menu> sysmenu() {
         return menuService.getMenusByUserId();
     }
