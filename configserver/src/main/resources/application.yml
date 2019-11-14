@@ -6,7 +6,7 @@ server:
   port: 8001
 spring:
   application:
-    name: config-server
+    name: config
   cloud:
     config:
       server:
