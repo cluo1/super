@@ -20,11 +20,11 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `super_properties`;
 CREATE TABLE `super_properties` (
-  `application` varchar(50) NOT NULL,
-  `property_name` varchar(50) NOT NULL,
+  `application` varchar(64) NOT NULL,
+  `property_name` varchar(128) NOT NULL,
   `property_value` varchar(500) NOT NULL,
-  `profile` varchar(50) NOT NULL,
-  `label` varchar(50) NOT NULL,
+  `profile` varchar(32) NOT NULL,
+  `label` varchar(32) NOT NULL,
   PRIMARY KEY (`application`,`profile`,`property_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
