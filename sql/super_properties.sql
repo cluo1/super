@@ -39,3 +39,5 @@ INSERT INTO `super_properties` VALUES (''gateway'', ''management.endpoints.web.c
 INSERT INTO `super_properties` VALUES (''gateway'', ''management.endpoints.web.cors.allowed-origins'', ''*'', ''dev'', ''master'');
 INSERT INTO `super_properties` VALUES (''gateway'', ''management.endpoints.web.exposure.include'', ''*'', ''dev'', ''master'');
 INSERT INTO `super_properties` VALUES (''gateway'', ''server.port'', ''8020'', ''dev'', ''master'');
+INSERT INTO `super_properties` VALUES (''gateway'', ''spring.cloud.gateway.discovery.locator.enabled'', ''true'', ''dev'', ''master'');
+INSERT INTO `super_properties` VALUES (''gateway'', ''spring.cloud.gateway.discovery.locator.lowerCaseServiceId'', ''true'', ''dev'', ''master'');
