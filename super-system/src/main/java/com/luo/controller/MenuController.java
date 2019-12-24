@@ -21,8 +21,8 @@ public class MenuController {
 
     @Autowired
     MenuService menuService;
-    @RequestMapping("/sysmenu")
 
+    @RequestMapping("/sysmenu")
     public List<Menu> sysmenu() {
         return menuService.getMenusByUserId();
     }
