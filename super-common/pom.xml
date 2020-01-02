@@ -11,6 +11,7 @@
     <artifactId>super-common</artifactId>
     <version>1.0</version>
     <name>super-common</name>
+    <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>
