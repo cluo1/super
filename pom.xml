@@ -19,6 +19,7 @@
         <module>super-activiti</module>
         <module>super-common</module>
         <module>super-system</module>
+        <module>super-plugin</module>
     </modules>
 
     <groupId>com.luo</groupId>
