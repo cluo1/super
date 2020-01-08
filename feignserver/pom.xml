@@ -10,6 +10,7 @@
 
     <groupId>com.luo</groupId>
     <artifactId>feignserver</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <name>feignserver</name>
 
     <dependencies>

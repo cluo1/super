@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.luo</groupId>
     <artifactId>super-common</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <name>super-common</name>
     <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
