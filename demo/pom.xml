@@ -130,7 +130,11 @@
             <version>5.1.8.RELEASE</version>
             <scope>compile</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
+            <version>1.5.2</version>
+        </dependency>
 
     </dependencies>
 

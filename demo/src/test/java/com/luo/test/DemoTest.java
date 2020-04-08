@@ -4,12 +4,28 @@ import org.junit.Test;
 
 import java.io.*;
 import java.util.ArrayList;
+//import org.bytedeco.javacpp.avcodec;
+//import org.bytedeco.javacpp.avformat;
+import org.bytedeco.javacv.*;
+import org.bytedeco.javacv.Frame;
+import org.springframework.util.ResourceUtils;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class DemoTest {
     private static String TTRD_ROLLING_PREVIOUS_RULE_INSERT = "insert into ttrd_rolling_previous_rule " +
             "(ID, RULE, RULE_NAME, SQL_PATH, SERVICE_NAME, IS_FORCE, " +
             "JS_PATH, SQL_COLUMNS, SORT_ID, SQL_FILE, ROLLING_TYPE)\n" +
             "values (?,?,?,?,?,?,?,?,?,?,?);";
+
+    private static final String JPG = "jpg";
+
+    private static final String MP4_SUFFIX = ".mp4";
     @Test
     public  void  test() throws Exception {
         ArrayList<String> list = new ArrayList<String>();
@@ -55,5 +71,52 @@ public class DemoTest {
         flowNoSeq = String.format("%07d",  Integer.valueOf(flowNoSeq));
         String s = "ZLS" + "" + flowNoSeq.substring(flowNoSeq.length() - 7, flowNoSeq.length());
         System.out.println(s);
+    }
+
+
+
+    /**
+     * 截取视频获得指定帧的图片
+     *
+     * @param video   源视频文件
+     * @param picPath 截图存放路径
+     */
+    public static void getVideoPic(File video, String picPath) {
+        FFmpegFrameGrabber ff = new FFmpegFrameGrabber(video);
+        try {
+            ff.start();
+
+            // 截取中间帧图片(具体依实际情况而定)
+            int i = 0;
+            int length = ff.getLengthInFrames();
+            int middleFrame = length / 2;
+            Frame frame = null;
+            while (i < length) {
+                frame = ff.grabFrame();
+                if ((i > middleFrame) && (frame.image != null)) {
+                    break;
+                }
+                i++;
+            }
+
+            // 截取的帧图片
+            Java2DFrameConverter converter = new Java2DFrameConverter();
+            BufferedImage srcImage = converter.getBufferedImage(frame);
+            int srcImageWidth = srcImage.getWidth();
+            int srcImageHeight = srcImage.getHeight();
+
+            // 对截图进行等比例缩放(缩略图)
+            final int width = 480;
+            int height = (int) (((double) width / srcImageWidth) * srcImageHeight);
+            BufferedImage thumbnailImage = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+            thumbnailImage.getGraphics().drawImage(srcImage.getScaledInstance(width, height, Image.SCALE_SMOOTH), 0, 0, null);
+
+            File picFile = new File(picPath);
+            ImageIO.write(thumbnailImage, JPG, picFile);
+
+            ff.stop();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
