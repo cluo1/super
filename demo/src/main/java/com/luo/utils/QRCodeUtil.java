@@ -178,7 +178,7 @@ public class QRCodeUtil  {
          */
         String imagePath = "f:/webapp.jpg";
         String logo = "src/main/webapp/21.png";
-        String content = "super";
+        String content = "http://www.baidu.com";
         encodeimage(imagePath, "JPEG", content, 430, 430 , logo);
         /**
          * 解密 -->将二维码内部的文字显示出来
