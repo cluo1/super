@@ -1,4 +1,4 @@
-package com.luo;
+package com.luo.account.balance;
 
 public class Account {
     private String acuntId;

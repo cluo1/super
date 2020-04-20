@@ -1,4 +1,4 @@
-package com.luo;
+package com.luo.account.balance;
 
 public class MoneyThread implements Runnable{
     private Account account;		//存入账户
