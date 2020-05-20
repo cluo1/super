@@ -53,7 +53,7 @@ import com.joyintech.utils.date.DateUtil;*/
  * @author 沈亚飞
  * @version 1.0
  */
-@Service
+//@Service
 public class SysFileServiceImpl{
 
 //    @Value("${filepath}")

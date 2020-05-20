@@ -14,7 +14,7 @@ public class SuperFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        log.info("filter方法启动");
+//        log.info("filter方法启动");
         filterChain.doFilter(servletRequest,servletResponse);
     }
 
