@@ -31,10 +31,10 @@ CREATE TABLE `super_properties` (
 -- ----------------------------
 -- Records of super_properties
 -- ----------------------------
-INSERT INTO `super_properties` VALUES (''demo'', ''server.port'', ''8081'', ''dev'', ''master'');
+INSERT INTO `super_properties` VALUES (''demo'', ''server.port'', ''8001'', ''dev'', ''master'');
 INSERT INTO `super_properties` VALUES (''feign'', ''feign.hystrix.enabled'', ''true'', ''dev'', ''master'');
 INSERT INTO `super_properties` VALUES (''feign'', ''server.connection-timeout'', ''10000'', ''dev'', ''master'');
-INSERT INTO `super_properties` VALUES (''feign'', ''server.port'', ''8082'', ''dev'', ''master'');
+INSERT INTO `super_properties` VALUES (''feign'', ''server.port'', ''8030'', ''dev'', ''master'');
 INSERT INTO `super_properties` VALUES (''gateway'', ''management.endpoints.web.cors.allowed-methods'', ''*'', ''dev'', ''master'');
 INSERT INTO `super_properties` VALUES (''gateway'', ''management.endpoints.web.cors.allowed-origins'', ''*'', ''dev'', ''master'');
 INSERT INTO `super_properties` VALUES (''gateway'', ''management.endpoints.web.exposure.include'', ''*'', ''dev'', ''master'');

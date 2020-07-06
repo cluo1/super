@@ -9,6 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CrudUtil {
     private static IPool dfPool = null;
@@ -22,7 +23,7 @@ public class CrudUtil {
         PoolConnection poolConnection = dfPool.getPoolConnection();
         Connection connection = poolConnection.getConnection();
 
-        List<Object> list = new ArrayList<>();
+        List<Object> list = new ArrayList<Object>();
         ResultSet resultSet=null;
         PreparedStatement preparedStatement = null;
         try {
@@ -37,7 +38,7 @@ public class CrudUtil {
             ResultSetMetaData md = resultSet.getMetaData();
             while (resultSet.next()){
                 for (int i=1;i<=md.getColumnCount();i++){
-                    HashMap<Object, Object> dataMap = new HashMap<>();
+                    Map<Object, Object> dataMap = new HashMap<Object, Object>();
                     dataMap.put(md.getColumnName(i),resultSet.getObject(i));
                     list.add(dataMap);
                 }

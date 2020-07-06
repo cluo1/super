@@ -28,7 +28,7 @@ public class AopConfig {
     DriverManagerDataSource dataSource(){
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
         driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        driverManagerDataSource.setUrl("jdbc:mysql://127.0.0.1:3306/test");
+        driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/super?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8");
         driverManagerDataSource.setUsername("root");
         driverManagerDataSource.setPassword("root");
         return driverManagerDataSource;

@@ -14,7 +14,6 @@ package com.luo.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * @Valid信息.
@@ -274,7 +273,6 @@ public class SysFile implements Serializable {
      * 取得创建日期的值
      * @return the createDate 的值
      */
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getCreateDate() {
         return createDate;
     }
@@ -305,7 +303,6 @@ public class SysFile implements Serializable {
      * 取得更新日期的值
      * @return the updateDate 的值
      */
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getUpdateDate() {
         return updateDate;
     }

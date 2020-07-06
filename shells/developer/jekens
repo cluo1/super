@@ -1,0 +1,254 @@
+#!/bin/bash -l
+###############################################################################
+
+# 功能:  兴业银行代销POC打包
+###############################################################################
+
+###############################################################################
+# 配置参数定义：
+
+# 配置要打包的依赖项目和业务服务项目
+
+# 依赖项目定义（因实际项目可能未部署到maven服务器，因此需要本地编译）(starter 相关的包实际已发布到MAVEN服务器90.61，但共享库使用的20.233)
+DEPENDENCYARRAY=( "starter-joyin-parent" "starter-joyin-common" "starter-joyin-entity" "starter-joyin-busicomm" "starter-joyin-jdbc" "starter-joyin-web" "starter-joyin-redis" "iwssadaptersdk" "iwssquartz" "starter-joyin-flowable"  "iwsskafka"  "iwssexcel")
+
+#定义 要打包的业务项目
+#SERVICEARRAY=("iwssservicetran" "iwssbatchta" "sysman" "iwssservicemngr" "iwssservicequota")
+#SERVICEARRAY=("iwssservicetran" "sysman" "iwssservicemngr" "iwssservicequota")
+SERVICEARRAY=("iwsseurekaserver" "iwssconfigserver" "iwssgateway" "sysman" "transman" "standardif" "retailif" "adaptif" "productman")
+
+#定义一个map ，用于存放每个服务部署的细节信息
+declare -A servicemap;
+
+#定义每个服务部署到哪几台机器上。
+# 参数说明 ：
+# 		一、服务器列表，使用IP 或机器名，空格分隔
+# 以服务方式部署规划，看起来更直观一些。
+#要将每个服务列举全面
+DEPLOY_SERVERS="192.168.90.141"
+
+# 系统服务
+servicemap["iwsseurekaserver"]="192.168.90.141"
+servicemap["iwssconfigserver"]="192.168.90.141"
+servicemap["iwssgateway"]="192.168.90.141"
+
+# 业务服务
+
+# 适配器暂时不启动
+#servicemap["iwssadapter"]="192.168.90.67"
+#servicemap["iwssservicetran"]="192.168.90.67 192.168.90.69"
+#servicemap["iwssbatchta"]="192.168.90.67"
+servicemap["sysman"]="192.168.90.141"
+servicemap["transman"]="192.168.90.141"
+servicemap["standardif"]="192.168.90.141"
+servicemap["retailif"]="192.168.90.141"
+servicemap["adaptif"]="192.168.90.141"
+servicemap["productman"]="192.168.90.141"
+
+# 定义一些辅助参数
+# 定义要更新的版本  （使用jenkins插件更新SVN，不再使用此参数）
+SVN_VERSION="HEAD"
+
+#忽略基本包的编译
+SKIPSTARTER="false"
+
+# 打包时跳过测试  需要添加到项目参数
+SKIPTEST="true"
+
+# 要构建的项目（默认为全部）
+BUILD_PROJECTS="all"
+
+# 目标目录的根目录（打包后，目标文件要上传的目录）
+DIST_DIR="/home/iwss/upload"
+# 目标脚本所在目录
+SHELL_DIR="/home/iwss/shbin"
+
+# 拷贝到目标目录使用的用户名（需要已经配置互信）
+USER_NAME="iwss"
+
+# 定义默认后台主目录
+BASE_DIR=${WORKSPACE}
+# 项目根目录
+PAKCAGE_DIR=${WORKSPACE}
+
+
+################################################################################
+# 函数定义区
+
+# 构建单个服务
+# 参数：  服务名（项目名，同目录名）
+# 说明： 使用mvn clean install 命令打包（因依赖服务需要打包到mvn服务器）
+# 不指定打包使用的配置文件 ，在启动时处理配置文件。
+function func_service_build()
+{
+	echo "当前正在处理服务${1}"
+	cd $BASE_DIR/${1}
+
+	# -q 为静默编译
+	mvn clean install -Dmaven.test.skip=$SKIPTEST  -Ptest -q
+
+}
+
+# 拷贝服务到指定的目标服务器  并调用监控程序
+# 参数：服务名（项目名，同目录名）
+# 说明：使用scp命令拷贝到目录，需要配置好互信
+function func_copy_service()
+{
+	echo "当前正在处理服务${1}"
+	# 解析要拷贝的服务器列表
+	TO_COPY_SERVER=(${servicemap[${1}]})
+
+	# 循环拷贝到目标目录（注意，使用scp命令需要配置好互信）
+	for ip in ${TO_COPY_SERVER[@]}
+	do
+		scp target/${1}*.jar  ${USER_NAME}@${ip}:${DIST_DIR}/
+
+		#打包完成后调用监控脚本启动服务
+
+		echo "正在启动监控脚本${1}:${DEPLOY_SERVERS}"
+
+        echo "ssh ${USER_NAME}@${ip} ${SHELL_DIR}/servicepackagemonitor.sh -s \"${DEPLOY_SERVERS}\" "
+		ssh ${USER_NAME}@${ip} "sh -x ${SHELL_DIR}/servicepackagemonitor.sh -s \"${DEPLOY_SERVERS}\" "
+
+		echo "启动监控脚本${1}:${DEPLOY_SERVERS}结束...."
+	done
+
+	# eurekaserver 和configserver 多等20秒
+	if [ "$1" == "iwsseurekaserver" -o "$1" == "iwssconfigserver" ] ; then
+		sleep 20
+	fi
+
+}
+
+
+###############################################################################
+
+
+###############################################################################
+# 预处理区
+# 一、提示使用方法
+# 二、处理环境变量（JAVA  MAVEN)
+# 三、处理命令行参数
+###############################################################################
+
+# 一、提示使用方法  TODO: 修改实际传入参数（区分jenkins参数 及命令脚本参数)
+function show_usage()
+{
+	echo "打包管理端程序"
+	echo "综合财富平台云架构标准程序后端打包及自动部署程序"
+	echo "安徽兆尹"
+    echo ${name}
+
+}
+
+show_usage
+echo "开始构建 :"
+date +%F" "%H:%M:%S
+
+# 二、处理环境变量 （需要根据实际情况调整）
+# 先配置JAVA 和MAVEN 的环境变量，以确保java和mvn命令正常。
+# 一般默认环境都已经配置了JAVA环境和MAVEN环境，不需要单独配置了。
+#source /home/hzbankci/.bash_profile
+#java -version
+#mvn -v
+export MAVEN_HOME=/u01/app/apache-maven-3.6.0
+export PATH=$MAVEN_HOME/bin:$PATH
+echo $MAVEN_HOME
+mvn -v
+
+
+
+###############################################################################
+# 三、处理命令行参数，并赋值到参数变量中。  添加参数需要同样的格式。
+# jenkins 打包不需要使用此方法
+
+#GETOPT_ARGS=`getopt -o b:d: -al base-dir:,dist-dir: -- "$@" `
+#eval  set -- "$GETOPT_ARGS"
+
+#while true ; do
+#        case "$1"  in
+#                -b|--base-dir) BASE_DIR="$2"; shift 2 ;;
+#                -d|--dist-dir) DIST_DIR="$2"; shift 2 ;;
+#				-v|--svn-version) SVN_VERSION="$2" ; shift 2 ;;
+#				-t|--skip-test) SKIPTEST="$2" ; shift 2 ;;
+#				-s|--skip-starter) SKIPSTARTER="$2" ; shift 2 ;;
+#				-p|--build-projects) BUILD_PROJECTS="$2" ; shift 2 ;;
+#                --) shift; break ;;
+#                *)  show_usage exit 1 ;
+#        esac
+#done
+
+
+
+###############################################################################
+
+
+###############################################################################
+# 脚本正式逻辑
+# 逻辑描述: 一、进入根目录
+#			二、构建依赖项目
+#           三、构建指定项目（不指定则所有项目。 构建完成按配置发送到相关位置）
+#           四、清理
+###############################
+
+# 判断确认主目录存在
+if [ ! -d "${BASE_DIR}" ] ; then
+	echo "主目录不存在，请先确认主目录正确！"
+	exit 1;
+fi
+
+# 拷贝监控脚本和执行脚本到各个要部署的服务器
+for deploy in ${DEPLOY_SERVERS[@]}
+do
+	echo "正在拷贝 ${BASE_DIR}/shells/developer/ 到  ${USER_NAME}@${deploy}:${SHELL_DIR}/"
+	scp -r ${BASE_DIR}/shells/developer/*  ${USER_NAME}@${deploy}:${SHELL_DIR}/
+	ssh ${USER_NAME}@${deploy}  "chmod +x ${SHELL_DIR}/*"
+
+done
+
+
+# 二、构建依赖项目
+# 构建基本依赖项目  (默认不忽略 ，随便指定什么值都会忽略 )
+if [  ${SKIPSTARTER}"x" != "falsex"  ] ; then
+	echo "跳过依赖"
+else
+	echo "正在构建基本依赖项目..."
+	for depend in ${DEPENDENCYARRAY[@]}
+	do
+    	echo "构建依赖项目"${depend}
+		cd ${BASE_DIR}/${depend}
+
+		# 需要确认是否要添加-Pbank 参数
+		mvn clean install -Dmaven.test.skip=${SKIPTEST} -q
+
+ 	done
+fi
+
+
+# 三、 构建服务项目
+
+if [ ${BUILD_PROJECTS}"x" == "allx" -o ${BUILD_PROJECTS}"x" == "x" ] ; then
+	#取构建参数，并赋值到构建列表中
+	SERVICETOBUILD=${SERVICEARRAY[@]}
+else
+	#拆分成数组
+	SERVICETOBUILD=(${BUILD_PROJECTS})
+fi
+
+echo "要构建的项目:"${SERVICETOBUILD[@]}
+for service in ${SERVICETOBUILD[@]}
+do
+		# 构建服务
+		echo  "正在构建服务${service}..."
+		func_service_build ${service}
+
+		echo "正在拷贝服务${service}到远程目录..."
+		#拷贝服务到指定目标(启动不由打包脚本负责)
+		func_copy_service ${service}
+
+
+
+done
+
+echo "打包完成！请检查目标目录。${DIST_DIR}"
+date +%F" "%H:%M:%S

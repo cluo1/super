@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/config")
+@RequestMapping("/demo")
 public class DemoController {
 
     @RequestMapping("/feign")

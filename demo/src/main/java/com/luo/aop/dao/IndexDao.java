@@ -16,7 +16,7 @@ public class IndexDao implements Dao{
 
     @Override
     public void save() {
-        namedParameterJdbcTemplate.update("insert into user(userId)values(7)",new HashMap(){});
+        namedParameterJdbcTemplate.update("insert into user(user_id)values(7)",new HashMap(){});
         System.out.println(1/0);
     }
 
