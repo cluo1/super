@@ -30,7 +30,7 @@ public class redisTest {
 
         redisUtil.hmSet("super1", new HashMap<String, Object>() {{
             put("01", "01");
-            put("02", 01);
+            put("02", 1);
         }});
 
         logger.info("super1:" + redisUtil.hmGet("super1"));
