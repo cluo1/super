@@ -19,7 +19,8 @@
         <module>feignserver</module>
         <module>super-activiti</module>
         <module>demo</module>
-       <!-- <module>super-plugin</module>-->
+        <module>super-redis</module>
+        <!-- <module>super-plugin</module>-->
     </modules>
 
     <groupId>com.luo</groupId>
@@ -45,15 +46,20 @@
             </exclusions>&ndash;&gt;
         </dependency>-->
 
-        <!-- <dependency>
-             <groupId>org.springframework.boot</groupId>
-             <artifactId>spring-boot-starter-log4j2</artifactId>
-             <scope>test</scope>
-         </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
             <scope>test</scope>
         </dependency>
 
@@ -97,13 +103,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-           <!-- <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>-->
+            <!-- <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-war-plugin</artifactId>
+                 <configuration>
+                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                 </configuration>
+             </plugin>-->
 
             <plugin>
                 <groupId>org.mybatis.generator</groupId>

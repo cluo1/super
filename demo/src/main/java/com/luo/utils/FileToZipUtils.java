@@ -1,16 +1,16 @@
 package com.luo.utils;
 
 import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class FileToZipUtils {
-    private static Logger log = LoggerFactory.getLogger(FileToZipUtils.class);
+    private static Logger log = LogManager.getLogger(FileToZipUtils.class);
 
     public byte[] createZip(String srcSource) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

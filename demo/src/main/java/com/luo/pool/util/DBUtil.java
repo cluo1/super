@@ -1,8 +1,8 @@
 package com.luo.pool.util;
 
 import com.luo.pool.conf.DBConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 @DBConfig(ip = "127.0.0.1",database = "test",user = "root",pwd = "root")
 public class DBUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(DBUtil.class);
+    private static final Logger logger = LogManager.getLogger(DBUtil.class);
     public static int initSize;
     public static int maxSize;
     public static int step;
