@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class ProducerAndConsumer {
 
-    private final Integer max_len = 10;
+    private final Integer MAX_LEN = 10;
     private Queue queue = new LinkedList<Integer>();
 
     class Producer implements Runnable{
@@ -17,7 +17,7 @@ public class ProducerAndConsumer {
         private void producer(){
             while (true){
                 synchronized (queue){
-                    if (queue.size()==max_len){
+                    if (queue.size()==MAX_LEN){
                         try {
                             queue.wait();
                         } catch (InterruptedException e) {
