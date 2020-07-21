@@ -1,6 +1,7 @@
 package com.luo.contorller;
 
 import com.luo.entity.User;
+import com.luo.utils.TestSqlLoader;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,5 +33,14 @@ public class DemoController {
     public String test(){
 
         return "hello";
+    }
+
+    @RequestMapping("/sqlloder")
+    public void sqlloder(String username, String password,
+                           String database, String ctlFileDir, String ctlFileName,String dataFileName){
+
+        TestSqlLoader testSqlLoader = new TestSqlLoader();
+        testSqlLoader.sqlloder(username, password,database, ctlFileDir, ctlFileName,dataFileName);
+
     }
 }
