@@ -1,4 +1,4 @@
-package com.luo.service.impl;
+package com.luo.service;
 
 import com.luo.common.UserUtils;
 import com.luo.entity.Menu;

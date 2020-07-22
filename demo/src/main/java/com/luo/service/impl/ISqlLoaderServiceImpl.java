@@ -1,28 +1,57 @@
-package com.luo.utils;
+package com.luo.service.impl;
 
+import com.luo.service.ISqlLoaderService;
+import com.luo.utils.TestSqlLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TestSqlLoader {
-    private static final Logger LOGGER = LogManager.getLogger(TestSqlLoader.class);
+@Service
+public class ISqlLoaderServiceImpl implements ISqlLoaderService {
+    private static final Logger LOGGER = LogManager.getLogger(ISqlLoaderServiceImpl.class);
 
-    /**
-     *
-     * @param username 数据库用户名
-     * @param password 数据库密码
-     * @param database 数据库地址
-     * @param filePath 控制文件路径
-     * @param ctlFileName 控制文件路径名称
-     * @param dataFileName 数据文件绝对路径
-     * @return the sql loader command
-     */
-    public  void sqlloder(String username, String password,
-                          String database, String filePath, String ctlFileName,String dataFileName) {
+    @Override
+    public String getCtlTemplet(String filePath,String dataFileName,String tableName,String split,String filedName) {
+
+        String strctl = "OPTIONS (skip=0,rows=800)\n" + // 0是从第一行开始  1是 从第二行
+                " LOAD DATA\n" + //设置字符集编码SELECT * FROM NLS_DATABASE_PARAMETERS WHERE PARAMETER = 'NLS_CHARACTERSET';
+                "INFILE '"+filePath+"/"+dataFileName+"'\n" +
+//                " APPEND INTO TABLE "+tableName+" \n" + ////覆盖写入
+                " TRUNCATE INTO TABLE "+tableName+"\n" + //清除写入
+                " FIELDS TERMINATED BY '"+split+"'\n" + //数据中每行记录用","分隔 ,TERMINATED用于控制字段的分隔符，可以为多个字符。|需要转译
+//                " OPTIONALLY  ENCLOSED BY \"'\"" + //源文件有引号 ''，这里去掉    ''''"
+                " TRAILING NULLCOLS\n" +
+                " "+filedName+" \n";  //表的字段没有对应的值时允许为空  源数据没有对应，写入null
+
+        return strctl;
+    }
+
+    @Override
+    public void ctlFileWriter(String strctl, String filePath, String ctlfileName) {
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(filePath + "/" + ctlfileName+".ctl");
+            fw.write(strctl);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fw.flush();
+                fw.close();
+            } catch (IOException e) {
+                LOGGER.error("生成控制器文件异常...");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public String sqlloder(String userName, String passWord, String dataBase, String filePath, String ctlFileName, String dataFileName) {
         long start = System.currentTimeMillis();
 
         LOGGER.info("文件下载到服务器，开始sqlloder导入数据到Oracle数据库");
@@ -30,19 +59,23 @@ public class TestSqlLoader {
         //获取系统时间
         Date day=new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
         String time=df.format(day);
 
+        String strPath = filePath+"/log";
+        File file = new File(strPath);
+        if(!file.exists()){
+            file.mkdirs();
+        }
         /*"sqlldr username/password@Database control=filePath+ctlFileName.ctl data=dataFileName
          *     direct=true bindsize=20971520 errors=10000000 bad=filePath+/bad/++time+ ctlFileName+.bad log=filePath+/log/+time+ ctlFileName.log"
          */
         StringBuffer command = new StringBuffer();
         command.append("sqlldr ");
-        command.append(username);
+        command.append(userName);
         command.append("/");
-        command.append(password);
+        command.append(passWord);
         command.append("@");
-        command.append(database);
+        command.append(dataBase);
         command.append(" control=" + filePath +"/"+ ctlFileName+".ctl");
         command.append(" data=" + dataFileName);
         command.append(" direct=true");
@@ -55,14 +88,14 @@ public class TestSqlLoader {
         long second = (System.currentTimeMillis() - start)/1000;
         LOGGER.info(dataFileName+"文件耗时:"+second+"秒");
 
+        return "end";
     }
 
     /**
      *
      * 运行命令
      */
-
-    public static void Executive(String command) {
+    private void Executive(String command) {
 
         String OS = System.getProperty("os.name").toLowerCase();
         String[] cmd=null;
@@ -146,56 +179,5 @@ public class TestSqlLoader {
         }
     }
 
-    public void ctlFileWriter(String strctl,String filePath,String ctlfileName) {
-        FileWriter fw = null;
-        try {
-            fw = new FileWriter(filePath + "/" + ctlfileName+".ctl");
-            fw.write(strctl);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                fw.flush();
-                fw.close();
-            } catch (IOException e) {
-                LOGGER.error("生成控制器文件异常...");
-                e.printStackTrace();
-            }
-        }
-    }
 
-    public static void main(String[] args) {
-        TestSqlLoader testSqlLoader = new TestSqlLoader();
-        String userName = "iwssdev";
-        String password = "iwssdev";
-        String database = "192.168.90.237/orcl.zhang";
-
-        String filePath = "H:/document/zy";
-        String ctlFileName = "WMS_PROD_VOL_EMPTY_DATE";
-        String tableName = "ZZ_PROD_VOL_EMPTY_DATE";
-        String dataFileName = "WMS_PROD_VOL_EMPTY_DATE.txt";
-
-        //"to_date(:TEST_DATE,'''yyyy-mm-dd hh24:mi:ss''')"
-//        String filedName = "(A FILLER,TEST_DATE \"to_date(:TEST_DATE,'''yyyy-MM-dd''')\",CUST_NO, JI_FEN, DETAIL_TYPE \"to_number(:DETAIL_TYPE)\")";
-
-//        String filedName = "(A FILLER,cust_no,pecust_name, name_en, cust_mgr_no,belong_org_no,cert_type,cert_no,birth_y,sex,mobile_tel,risk_rating,risk_rating_time,cust_level)";
-        String filedName = "(host_cust_no,cust_name, last_hold_date, cumulative_days \"to_number(:cumulative_days)\")";
-
-        String split = "~@~";
-
-        // CHARACTERSET AL32UTF8
-        String strctl = "OPTIONS (skip=0,rows=800)\n" + // 0是从第一行开始  1是 从第二行
-                " LOAD DATA\n" + //设置字符集编码SELECT * FROM NLS_DATABASE_PARAMETERS WHERE PARAMETER = 'NLS_CHARACTERSET';
-                "INFILE '"+filePath+"/"+dataFileName+"'\n" +
-//                " APPEND INTO TABLE "+tableName+" \n" + ////覆盖写入
-                " TRUNCATE INTO TABLE "+tableName+"\n" + //清除写入
-                " FIELDS TERMINATED BY '"+split+"'\n" + //数据中每行记录用","分隔 ,TERMINATED用于控制字段的分隔符，可以为多个字符。|需要转译
-//                " OPTIONALLY  ENCLOSED BY \"'\"" + //源文件有引号 ''，这里去掉    ''''"
-                " TRAILING NULLCOLS\n" +
-                " "+filedName+" \n";  //表的字段没有对应的值时允许为空  源数据没有对应，写入null
-
-        testSqlLoader.ctlFileWriter(strctl,filePath,ctlFileName);
-        testSqlLoader.sqlloder(userName, password,database, filePath, ctlFileName,filePath+"/"+dataFileName);
-
-    }
 }
