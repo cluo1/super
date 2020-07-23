@@ -69,7 +69,8 @@ public class DemoController {
 //
 //        testSqlLoader.ctlFileWriter(strctl,filePath,ctlFileName);
 //        testSqlLoader.sqlloder(userName, password,database, filePath, ctlFileName,filePath+"/"+dataFileName);
-        String ctlTemplet = iSqlLoaderService.getCtlTemplet(filePath, dataFileName, tableName, split, filedName);
+        String skip = "0";
+        String ctlTemplet = iSqlLoaderService.getCtlTemplet(filePath, dataFileName,skip, tableName, split, filedName);
         iSqlLoaderService.ctlFileWriter(ctlTemplet, filePath, ctlFileName);
         iSqlLoaderService.sqlloder(userName, password, database, filePath, ctlFileName, filePath + "/" + dataFileName);
 
