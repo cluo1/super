@@ -61,8 +61,8 @@ public class ISqlLoaderServiceImpl implements ISqlLoaderService {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String time=df.format(day);
 
-        String strPath = filePath+"/log";
-        File file = new File(strPath);
+        String logPath = filePath+"/log";
+        File file = new File(logPath);
         if(!file.exists()){
             file.mkdirs();
         }
@@ -106,7 +106,7 @@ public class ISqlLoaderServiceImpl implements ISqlLoaderService {
         }
         try {
             Process process = Runtime.getRuntime().exec(cmd);
-//
+
             //防止死锁 开启两个线程
             new Thread() {
                 @Override

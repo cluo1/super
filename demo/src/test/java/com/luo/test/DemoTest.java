@@ -1,5 +1,6 @@
 package com.luo.test;
 
+import com.alibaba.druid.filter.config.ConfigTools;
 import org.junit.Test;
 
 import java.io.*;
@@ -118,5 +119,14 @@ public class DemoTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args)
+            throws Exception {
+        String key = "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKuagdHLW30RxHJkE/tBbDLbCou5MAsaGlHZP0nuYY3+p/bkeSDIUcj+m8UNErmi0d1tGlJwA+HzHYPhsW70jKcCAwEAAQ==";
+        String strMi = "JyWNHFgyMLrfVTIQMUDDe6xEUv+Tj4nI1ZHJLYDsIHbHxP4h9qB7UX2lKQYIevH9H2fmJrPAHVz3jX/Uv7KxdQ==";
+
+        String pwd = ConfigTools.decrypt(key, strMi);
+        System.out.println(pwd);
     }
 }

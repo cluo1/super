@@ -41,6 +41,27 @@ public class DemoController {
         return "hello";
     }
 
+    /**
+     * @param userName
+     * @param password
+     * @param database
+     * @param filePath
+     * @param ctlFileName
+     * @param dataFileName
+     * @param tableName
+     * @param filedName
+     * @param split
+     *         例：
+     *         userName=iwssdev
+     *         password=iwssdev
+     *         database=192.168.90.237/orcl.zhang
+     *         filePath=H:/document/zy
+     *         ctlFileName=WMS_T1_CUST_INFO
+     *         dataFileName=WMS_T1_CUST_INFO.txt
+     *         tableName=test1
+     *         filedName=(TEST_DATE FILLER,CUST_NO, JI_FEN, DETAIL_TYPE "to_number(:DETAIL_TYPE)")
+     *         split=~@~
+     */
     @RequestMapping("/sqlloder")
     public void sqlloder(String userName, String password,
                          String database, String filePath, String ctlFileName, String dataFileName, String tableName, String filedName, String split) {
