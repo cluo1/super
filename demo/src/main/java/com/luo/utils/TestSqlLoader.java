@@ -166,15 +166,16 @@ public class TestSqlLoader {
     }
 
     public static void main(String[] args) {
-        ISqlLoaderServiceImpl testSqlLoader = new ISqlLoaderServiceImpl();
+//        ISqlLoaderServiceImpl testSqlLoader = new ISqlLoaderServiceImpl();
+        TestSqlLoader testSqlLoader = new TestSqlLoader();
         String userName = "iwssdev";
         String password = "iwssdev";
         String database = "192.168.90.237/orcl.zhang";
 
         String filePath = "H:/document/zy";
-        String ctlFileName = "test";
+        String ctlFileName = "CRM_ACMG_T_PECUST_VALUE_INFO";
         String tableName = "ZZ_ACMG_T_PECUST_VALUE_INFO";
-        String dataFileName = "test.txt";
+        String dataFileName = "CRM_ACMG_T_PECUST_VALUE_INFO.txt";
 
         //"to_date(:TEST_DATE,'''yyyy-mm-dd hh24:mi:ss''')"
 //        String filedName = "(A FILLER,TEST_DATE \"to_date(:TEST_DATE,'''yyyy-MM-dd''')\",CUST_NO, JI_FEN, DETAIL_TYPE \"to_number(:DETAIL_TYPE)\")";
@@ -186,8 +187,8 @@ public class TestSqlLoader {
         String skip = "0";
 
         // CHARACTERSET AL32UTF8
-//        String strctl = "OPTIONS (skip=0,rows=800)\n" + // 0是从第一行开始  1是 从第二行
-//                " LOAD DATA CHARACTERSET AL32UTF8\n" + //设置字符集编码SELECT * FROM NLS_DATABASE_PARAMETERS WHERE PARAMETER = 'NLS_CHARACTERSET';
+//        String ctlTemplet = "OPTIONS (skip=0,rows=800)\n" + // 0是从第一行开始  1是 从第二行
+//                " LOAD DATA CHARACTERSET AL32UTF8 \n" + //设置字符集编码SELECT * FROM NLS_DATABASE_PARAMETERS WHERE PARAMETER = 'NLS_CHARACTERSET';
 //                "INFILE '"+filePath+"/"+dataFileName+"'\n" +
 ////                " APPEND INTO TABLE "+tableName+" \n" + ////覆盖写入
 //                " TRUNCATE INTO TABLE "+tableName+"\n" + //清除写入
@@ -196,8 +197,17 @@ public class TestSqlLoader {
 //                " TRAILING NULLCOLS\n" +
 //                " "+filedName+" \n";  //表的字段没有对应的值时允许为空  源数据没有对应，写入null
 
+        String ctlTemplet = "OPTIONS (skip=0,rows=128) \n" + // 0是从第一行开始  1是 从第二行
+                " LOAD DATA CHARACTERSET AL32UTF8 \n" + //设置字符集编码SELECT * FROM NLS_DATABASE_PARAMETERS WHERE PARAMETER = 'NLS_CHARACTERSET';
+                "INFILE '"+filePath+"/"+dataFileName+"' \n" +
+                " APPEND INTO TABLE "+tableName+" \n" + ////覆盖写入
+                " FIELDS TERMINATED BY '"+split+"'\n" + //数据中每行记录用","分隔 ,TERMINATED用于控制字段的分隔符，可以为多个字符。|需要转译
+//                " OPTIONALLY  ENCLOSED BY \"'\"" + //源文件有引号 ''，这里去掉    ''''"
+                " TRAILING NULLCOLS \n" +
+                " "+filedName+" \n";  //表的字段没有对应的值时允许为空  源数据没有对应，写入null
+
         //注意ctlTemplet字符码
-        String ctlTemplet = testSqlLoader.getCtlTemplet(filePath, dataFileName,skip, tableName, split, filedName);
+//        String ctlTemplet = testSqlLoader.getCtlTemplet(filePath, dataFileName,skip, tableName, split, filedName);
 
         testSqlLoader.ctlFileWriter(ctlTemplet,filePath,ctlFileName);
         testSqlLoader.sqlloder(userName, password,database, filePath, ctlFileName,filePath+"/"+dataFileName);

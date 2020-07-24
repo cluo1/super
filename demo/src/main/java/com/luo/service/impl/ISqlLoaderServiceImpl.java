@@ -19,8 +19,9 @@ public class ISqlLoaderServiceImpl implements ISqlLoaderService {
     public String getCtlTemplet(String filePath,String dataFileName,String skip,String tableName,String split,String filedName) {
 
         String strctl = "OPTIONS (skip="+skip+",rows=800)\n" + // 0是从第一行开始  1是 从第二行
-                " LOAD DATA CHARACTERSET AL32UTF8\n" + //设置字符集编码SELECT * FROM NLS_DATABASE_PARAMETERS WHERE PARAMETER = 'NLS_CHARACTERSET';
-                "INFILE '"+filePath+"/"+dataFileName+"'\n" +
+                " LOAD DATA\n" +
+//                " CHARACTERSET AL32UTF8\n" +
+                " INFILE '"+filePath+"/"+dataFileName+"'\n" +
 //                " APPEND INTO TABLE "+tableName+" \n" + ////覆盖写入
                 " TRUNCATE INTO TABLE "+tableName+"\n" + //清除写入
                 " FIELDS TERMINATED BY '"+split+"'\n" + //数据中每行记录用","分隔 ,TERMINATED用于控制字段的分隔符，可以为多个字符。|需要转译
@@ -187,14 +188,14 @@ public class ISqlLoaderServiceImpl implements ISqlLoaderService {
         String database = "192.168.90.237/orcl.zhang";
 
         String filePath = "H:/document/zy";
-        String ctlFileName = "test";
+        String ctlFileName = "CRM_ACMG_T_PECUST_VALUE_INFO";
         String tableName = "ZZ_ACMG_T_PECUST_VALUE_INFO";
-        String dataFileName = "test.txt";
+        String dataFileName = "CRM_ACMG_T_PECUST_VALUE_INFO.txt";
 
 //        String filedName = "(A FILLER,TEST_DATE \"to_date(:TEST_DATE,'''yyyy-MM-dd''')\",CUST_NO, JI_FEN, DETAIL_TYPE \"to_number(:DETAIL_TYPE)\")";
 
 //        constant \"a\"//导入默认值语法
-        String filedName = "(A FILLER,cust_no,pecust_name, name_en, cust_mgr_no,belong_org_no,cert_type,cert_no,birth_y,sex,mobile_tel,risk_rating,risk_rating_time,cust_level)";
+        String filedName = "(A FILLER,cust_no,pecust_name, name_en, cust_mgr_no,belong_org_no,cert_type,cert_no,birth_y,sex,mobile_tel,risk_rating,risk_rating_time,cust_level constant \"a\")";
 //        String filedName = "(host_cust_no,cust_name, last_hold_date, cumulative_days \"to_number(:cumulative_days)\")";
 
         String split = "~@~";
