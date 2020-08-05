@@ -21,6 +21,7 @@ public class ISqlLoaderServiceImpl implements ISqlLoaderService {
         String strctl = "OPTIONS (skip="+skip+",rows=800)\n" + // 0是从第一行开始  1是 从第二行
                 " LOAD DATA\n" +
 //                " CHARACTERSET AL32UTF8\n" +
+//                " CHARACTERSET ZHS16GBK"+
                 " INFILE '"+filePath+"/"+dataFileName+"'\n" +
 //                " APPEND INTO TABLE "+tableName+" \n" + ////覆盖写入
                 " TRUNCATE INTO TABLE "+tableName+"\n" + //清除写入

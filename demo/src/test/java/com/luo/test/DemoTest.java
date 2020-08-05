@@ -4,6 +4,7 @@ import com.alibaba.druid.filter.config.ConfigTools;
 import org.junit.Test;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 //import org.bytedeco.javacpp.avcodec;
 //import org.bytedeco.javacpp.avformat;
@@ -128,5 +129,48 @@ public class DemoTest {
 
         String pwd = ConfigTools.decrypt(key, strMi);
         System.out.println(pwd);
+    }
+
+    @Test
+    public void test2() throws FileNotFoundException {
+        StringBuilder sb = new StringBuilder();
+        String s = "";
+              BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream("C:\\Users\\admin\\Desktop\\mgck-master\\12.txt"), Charset.forName("GBK")));
+        String line = null;
+        try {
+            while ((line = in.readLine()) != null) {
+                String str = "insert into BS_sensitive_Words (SENSITIVE_WORD_ID, SENSITIVE_WORD_CONTENT, CREATE_DATE, CREATE_USER_NO, UPDATE_DATE, UPDATE_USER_NO,sensitive_type)\n" +
+                        "values (('1'||to_char(sysdate, 'yyyymmdd')||LPAD(GLOBAL_ID.NEXTVAL, 8, '0')), '"+line+"', sysdate,'admin',  sysdate, 'admin','0');";
+
+                String str2 = "insert into BS_sensitive_Words (SENSITIVE_WORD_ID, SENSITIVE_WORD_CONTENT, CREATE_DATE, CREATE_USER_NO, UPDATE_DATE, UPDATE_USER_NO,sensitive_type)\n" +
+                        "values (('2'||to_char(sysdate, 'yyyymmdd')||LPAD(GLOBAL_ID.NEXTVAL, 8, '0')), '"+line+"', sysdate,'admin',  sysdate, 'admin','1');";
+
+                sb.append(str2).append("\n").append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+//        System.out.println(sb.toString());
+        BufferedWriter bw = null;
+        try {
+            bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("C:\\Users\\admin\\Desktop\\mgck-master\\12_1.sql")), "UTF-8"));
+            bw.write(sb.toString());
+            bw.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
