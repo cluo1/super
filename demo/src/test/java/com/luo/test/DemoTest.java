@@ -5,11 +5,14 @@ import org.junit.Test;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 //import org.bytedeco.javacpp.avcodec;
 //import org.bytedeco.javacpp.avformat;
 import org.bytedeco.javacv.*;
 import org.bytedeco.javacv.Frame;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.ResourceUtils;
 
 import javax.imageio.ImageIO;
@@ -18,8 +21,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Date;
 
 public class DemoTest {
+    private static final Logger logger = LoggerFactory.getLogger(DemoTest.class);
+
+
     private static String TTRD_ROLLING_PREVIOUS_RULE_INSERT = "insert into ttrd_rolling_previous_rule " +
             "(ID, RULE, RULE_NAME, SQL_PATH, SERVICE_NAME, IS_FORCE, " +
             "JS_PATH, SQL_COLUMNS, SORT_ID, SQL_FILE, ROLLING_TYPE)\n" +
@@ -28,6 +35,16 @@ public class DemoTest {
     private static final String JPG = "jpg";
 
     private static final String MP4_SUFFIX = ".mp4";
+
+    @Test
+    public void test3(){
+        Date date = new Date();
+        String format = new SimpleDateFormat("M月dd日 HH:mm:ss").format(date);
+        logger.info(format);
+
+    }
+
+
     @Test
     public  void  test() throws Exception {
         ArrayList<String> list = new ArrayList<String>();
