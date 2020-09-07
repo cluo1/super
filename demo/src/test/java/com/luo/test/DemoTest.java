@@ -39,7 +39,7 @@ public class DemoTest {
     @Test
     public void test3(){
         Date date = new Date();
-        String format = new SimpleDateFormat("M月dd日 HH:mm:ss").format(date);
+        String format = new SimpleDateFormat("yyyy年M月d日 HH:mm").format(date);
         logger.info(format);
 
     }
