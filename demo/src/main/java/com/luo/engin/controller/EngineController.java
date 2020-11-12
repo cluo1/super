@@ -1,6 +1,6 @@
-package com.luo.interpret.controller;
+package com.luo.engin.controller;
 
-import com.luo.interpret.service.EngineProcess;
+import com.luo.engin.service.EngineProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

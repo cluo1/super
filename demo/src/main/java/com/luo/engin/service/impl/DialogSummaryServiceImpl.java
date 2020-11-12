@@ -1,7 +1,7 @@
-package com.luo.interpret.service.impl;
+package com.luo.engin.service.impl;
 
 //import com.iflytek.isc.client.ISCApi;
-import com.luo.interpret.service.EngineService;
+import com.luo.engin.service.EngineService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

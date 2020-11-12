@@ -1,10 +1,10 @@
-package com.luo.interpret.service.impl;
+package com.luo.engin.service.impl;
 
 //import com.iflytek.proto.xsf.ReqData;
 //import com.iflytek.proto.xsf.ResData;
 //import com.iflytek.proto.xsf.Session;
 //import com.iflytek.proto.xsf.XsfCallGrpc;
-import com.luo.interpret.service.EngineService;
+import com.luo.engin.service.EngineService;
 //import io.grpc.ManagedChannel;
 //import io.grpc.ManagedChannelBuilder;
 import org.slf4j.Logger;
