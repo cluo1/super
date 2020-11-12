@@ -11,15 +11,15 @@
     </parent>
 
     <modules>
-        <module>eurekaserver</module>
-        <module>configserver</module>
-        <module>gatewayserver</module>
-        <module>super-common</module>
-        <module>super-system</module>
-        <module>feignserver</module>
-        <module>super-activiti</module>
         <module>demo</module>
-        <module>super-redis</module>
+        <module>super-common</module>
+        <!--        <module>eurekaserver</module>-->
+        <!--        <module>configserver</module>-->
+        <!--        <module>gatewayserver</module>-->
+<!--        <module>super-system</module>-->
+<!--        <module>feignserver</module>-->
+<!--        <module>super-activiti</module>-->
+<!--        <module>super-redis</module>-->
         <!-- <module>super-plugin</module>-->
     </modules>
 
