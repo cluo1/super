@@ -41,16 +41,30 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <exclusions>
                 <exclusion>
-                    <artifactId>spring-boot-starter-logging</artifactId>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-boot-starter</artifactId>
                     <groupId>org.springframework.boot</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>hibernate-validator</artifactId>
+                    <groupId>org.hibernate.validator</groupId>
+                </exclusion>
             </exclusions>
+            <!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>spring-boot-starter-logging</artifactId>-->
+<!--                    <groupId>org.springframework.boot</groupId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
 
-        <dependency> <!-- 引入log4j2依赖 -->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-log4j2</artifactId>
-        </dependency>
+<!--        <dependency> &lt;!&ndash; 引入log4j2依赖 &ndash;&gt;-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-log4j2</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
