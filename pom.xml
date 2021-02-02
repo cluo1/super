@@ -36,16 +36,16 @@
     </properties>
 
     <dependencies>
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            &lt;!&ndash;<exclusions>
+            <exclusions>
                 <exclusion>
                     <artifactId>spring-boot-starter-logging</artifactId>
                     <groupId>org.springframework.boot</groupId>
                 </exclusion>
-            </exclusions>&ndash;&gt;
-        </dependency>-->
+            </exclusions>
+        </dependency>
 
         <dependency> <!-- 引入log4j2依赖 -->
             <groupId>org.springframework.boot</groupId>
@@ -72,19 +72,19 @@
 
     </dependencies>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>snapshot</id>
-            <name>snapshot-repository</name>
-            <url>http://192.168.181.27:8081/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
+<!--    <distributionManagement>-->
+<!--        <snapshotRepository>-->
+<!--            <id>snapshot</id>-->
+<!--            <name>snapshot-repository</name>-->
+<!--            <url>http://192.168.181.27:8081/nexus/content/repositories/snapshots/</url>-->
+<!--        </snapshotRepository>-->
 
-        <repository>
-            <id>releases</id>
-            <name>releases-repository</name>
-            <url>http://192.168.181.27:8081/nexus/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
+<!--        <repository>-->
+<!--            <id>releases</id>-->
+<!--            <name>releases-repository</name>-->
+<!--            <url>http://192.168.181.27:8081/nexus/content/repositories/releases/</url>-->
+<!--        </repository>-->
+<!--    </distributionManagement>-->
 
     <dependencyManagement>
         <dependencies>
