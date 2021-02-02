@@ -19,7 +19,8 @@
 <!--        <module>super-system</module>-->
 <!--        <module>feignserver</module>-->
 <!--        <module>super-activiti</module>-->
-<!--        <module>super-redis</module>-->
+        <module>super-redis</module>
+        <module>super-kafka</module>
         <!-- <module>super-plugin</module>-->
     </modules>
 
