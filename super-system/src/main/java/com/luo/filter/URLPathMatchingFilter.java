@@ -6,11 +6,9 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.PathMatchingFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.thymeleaf.spring5.context.SpringContextUtils;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import java.util.Set;
 
 public class URLPathMatchingFilter extends PathMatchingFilter {
 	@Autowired
