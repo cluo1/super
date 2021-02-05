@@ -19,6 +19,20 @@
             <groupId>com.luo</groupId>
             <artifactId>super-common</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-lang</artifactId>
+                    <groupId>commons-lang</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>json-lib</artifactId>
+                    <groupId>net.sf.json-lib</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>ezmorph</artifactId>
+                    <groupId>net.sf.ezmorph</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--引入kafak和spring整合的jar-->
         <dependency>
