@@ -8,9 +8,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.luo</groupId>
-    <artifactId>gatewayserver</artifactId>
+    <artifactId>super-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gatewayserver</name>
     <packaging>jar</packaging>
 
     <dependencies>

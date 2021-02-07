@@ -8,12 +8,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.luo</groupId>
-    <artifactId>configserver</artifactId>
-    <name>configserver</name>
+    <artifactId>super-config</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -35,6 +33,4 @@
             <version>2.1.0.RELEASE</version>
         </dependency>
     </dependencies>
-
-
 </project>

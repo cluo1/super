@@ -14,8 +14,8 @@
         <module>demo</module>
         <module>super-common</module>
                 <module>super-eurake</module>
-                <module>configserver</module>
-                <module>gatewayserver</module>
+                <module>super-config</module>
+                <module>super-gateway</module>
 <!--        <module>super-system</module>-->
 <!--        <module>feignserver</module>-->
 <!--        <module>super-activiti</module>-->
