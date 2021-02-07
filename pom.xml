@@ -13,9 +13,9 @@
     <modules>
         <module>demo</module>
         <module>super-common</module>
-        <!--        <module>eurekaserver</module>-->
-        <!--        <module>configserver</module>-->
-        <!--        <module>gatewayserver</module>-->
+                <module>eurekaserver</module>
+                <module>configserver</module>
+                <module>gatewayserver</module>
 <!--        <module>super-system</module>-->
 <!--        <module>feignserver</module>-->
 <!--        <module>super-activiti</module>-->
@@ -44,24 +44,20 @@
                     <artifactId>log4j-to-slf4j</artifactId>
                     <groupId>org.apache.logging.log4j</groupId>
                 </exclusion>
-                <exclusion>
-                    <artifactId>spring-boot-starter</artifactId>
-                    <groupId>org.springframework.boot</groupId>
-                </exclusion>
+                <!-- logback日志管理 -->
+<!--                <exclusion>-->
+<!--                    <groupId>org.springframework.boot</groupId>-->
+<!--                    <artifactId>spring-boot-starter-logging</artifactId>-->
+<!--                </exclusion>-->
                 <exclusion>
                     <artifactId>hibernate-validator</artifactId>
                     <groupId>org.hibernate.validator</groupId>
                 </exclusion>
             </exclusions>
-            <!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <artifactId>spring-boot-starter-logging</artifactId>-->
-<!--                    <groupId>org.springframework.boot</groupId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
         </dependency>
 
-<!--        <dependency> &lt;!&ndash; 引入log4j2依赖 &ndash;&gt;-->
+        <!-- log4j2日志管理 -->
+<!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
 <!--            <artifactId>spring-boot-starter-log4j2</artifactId>-->
 <!--        </dependency>-->
