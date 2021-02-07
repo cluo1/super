@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class BaseLockHandler<T> {
     //获得锁的默认超时时间，默认为 200ms
-    private static int DEFAULT_TIME_OUT = 200;
+    private static int DEFAULT_TIME_OUT = 10000;
     //加锁的资源路径
     private String path;
 

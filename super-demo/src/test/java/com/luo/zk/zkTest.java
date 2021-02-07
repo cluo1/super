@@ -20,15 +20,15 @@ public class zkTest {
     public void test(){
         String path="/super";
         boolean existNode = lockComponent.isExistNode(path);
-        lockComponent.getNodeData(path);
+        String nodeData = lockComponent.getNodeData(path);
+
         //分布式锁
-//        path="/super";
-//        lockComponent.acquireLock(new BaseLockHandler<Object>(path) {
-//            @Override
-//            public boolean handler() {
-//                //业务处理
-//                return false;
-//            }
-//        });
+        lockComponent.acquireLock(new BaseLockHandler<Object>(path) {
+            @Override
+            public boolean handler() {
+                //业务处理
+                return false;
+            }
+        });
     }
 }
