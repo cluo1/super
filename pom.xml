@@ -12,16 +12,18 @@
 
     <modules>
         <module>super-demo</module>
-        <module>super-common</module>
-                <module>super-eurake</module>
-                <module>super-config</module>
-                <module>super-gateway</module>
-<!--        <module>super-system</module>-->
+
+        <module>super-eurake</module>
+        <module>super-config</module>
+        <module>super-gateway</module>
         <module>super-feign</module>
-<!--        <module>super-activiti</module>-->
         <module>super-redis</module>
         <module>super-kafka</module>
-        <!-- <module>super-plugin</module>-->
+        <module>super-zookeeper</module>
+<!--        <module>super-plugin</module>-->
+<!--        <module>super-system</module>-->
+<!--        <module>super-activiti</module>-->
+        <module>super-common</module>
     </modules>
 
     <groupId>com.luo</groupId>

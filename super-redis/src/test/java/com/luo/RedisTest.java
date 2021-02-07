@@ -21,7 +21,7 @@ public class RedisTest {
     @Test
     public void test() {
         redisUtil.set("super", "super");
-        redisUtil.setExpire("super", 1);
+        redisUtil.setExpire("super", 10);
         logger.info("super:{}", redisUtil.get("super"));
         logger.info("time:{}", redisUtil.getExpire("super"));
 //
