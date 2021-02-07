@@ -47,7 +47,7 @@ fatal： 级别比较高了。重大错误，这种级别你可以直接停止�
             <PatternLayout pattern="${PATTERN}" />
         </File>
         <!--输出到循环日志，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
-        <RollingFile name="RollingFileLog" fileName="${logPath}/demo_app.log" filePattern="${logPath}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+        <RollingFile name="RollingFileLog" fileName="${logPath}/demo_app.log" filePattern="${logPath}/$${date:yyyy-MM}/demo-%d{MM-dd-yyyy}-%i.log.gz">
             <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
             <PatternLayout pattern="${PATTERN}" />
             <SizeBasedTriggeringPolicy size="10MB" />

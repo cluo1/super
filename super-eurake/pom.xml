@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>eurekaserver</artifactId>
+    <artifactId>super-eurake</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>

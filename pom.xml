@@ -13,7 +13,7 @@
     <modules>
         <module>demo</module>
         <module>super-common</module>
-                <module>eurekaserver</module>
+                <module>super-eurake</module>
                 <module>configserver</module>
                 <module>gatewayserver</module>
 <!--        <module>super-system</module>-->
@@ -45,10 +45,10 @@
                     <groupId>org.apache.logging.log4j</groupId>
                 </exclusion>
                 <!-- logback日志管理 -->
-<!--                <exclusion>-->
-<!--                    <groupId>org.springframework.boot</groupId>-->
-<!--                    <artifactId>spring-boot-starter-logging</artifactId>-->
-<!--                </exclusion>-->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
                 <exclusion>
                     <artifactId>hibernate-validator</artifactId>
                     <groupId>org.hibernate.validator</groupId>
@@ -57,10 +57,10 @@
         </dependency>
 
         <!-- log4j2日志管理 -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-log4j2</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
