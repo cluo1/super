@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.luo</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>super-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo</name>
     <packaging>jar</packaging>
@@ -218,7 +218,6 @@
                     <target>8</target>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 

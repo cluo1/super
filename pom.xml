@@ -11,13 +11,13 @@
     </parent>
 
     <modules>
-        <module>demo</module>
+        <module>super-demo</module>
         <module>super-common</module>
                 <module>super-eurake</module>
                 <module>super-config</module>
                 <module>super-gateway</module>
 <!--        <module>super-system</module>-->
-<!--        <module>feignserver</module>-->
+        <module>super-feign</module>
 <!--        <module>super-activiti</module>-->
         <module>super-redis</module>
         <module>super-kafka</module>

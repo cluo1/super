@@ -9,7 +9,7 @@
     </parent>
 
     <groupId>com.luo</groupId>
-    <artifactId>feignserver</artifactId>
+    <artifactId>super-feign</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>feignserver</name>
 
