@@ -12,7 +12,6 @@
 
     <modules>
         <module>super-demo</module>
-
         <module>super-eurake</module>
         <module>super-config</module>
         <module>super-gateway</module>

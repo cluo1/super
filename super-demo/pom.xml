@@ -10,7 +10,6 @@
     <groupId>com.luo</groupId>
     <artifactId>super-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
     <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
 
