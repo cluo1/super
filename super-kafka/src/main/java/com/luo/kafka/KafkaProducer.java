@@ -8,7 +8,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,22 +18,23 @@ public class KafkaProducer {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    public void send(){
+    public void send1(){
         Map<String,Object> map = new HashMap();
         map.put("super1","super1");
-        map.put("super2","super2");
-        ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send("topic1", JSONObject.toJSONString(map));
+        for (int i=0;i<2;i++){
+            ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send("topic1",i,"key1", JSONObject.toJSONString(map));
+        }
 
-        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
-            @Override
-            public void onFailure(Throwable throwable) {
-                log.error("kafka sendMessage error, throwable = {}, topic = {}, data = {}", throwable, "topic1", JSONObject.toJSONString(map));
-            }
-            @Override
-            public void onSuccess(SendResult<String, String> stringDotaHeroSendResult) {
-                log.info("kafka sendMessage success topic = {}, data = {}","topic1",  JSONObject.toJSONString(map));
-            }
-        });
+//        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
+//            @Override
+//            public void onFailure(Throwable throwable) {
+//                log.error("kafka sendMessage error, throwable = {}, topic = {}, data = {}", throwable, "topic1", JSONObject.toJSONString(map));
+//            }
+//            @Override
+//            public void onSuccess(SendResult<String, String> stringDotaHeroSendResult) {
+//                log.info("kafka sendMessage success topic = {}, data = {}","topic1",  JSONObject.toJSONString(map));
+//            }
+//        });
         log.info("kafka sendMessage end");
     }
 }

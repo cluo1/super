@@ -190,4 +190,42 @@ public class DemoTest {
             }
         }
     }
+
+    @Test
+    public void test4() throws Exception {
+        StringBuilder sb = new StringBuilder(" select ");
+        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream("C:\\Users\\chaoluo5\\Desktop\\new 2.txt"), Charset.forName("GBK")));
+        String line = null;
+        try {
+            while ((line = in.readLine()) != null) {
+                sb.append(line).append(",");
+            }
+            sb.append(" callTime,saleStore,customerName");
+            sb.append(" from dpsqczj");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println(sb.toString());
+//        BufferedWriter bw = null;
+//        try {
+//            bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("C:\\Users\\admin\\Desktop\\mgck-master\\12_1.sql")), "UTF-8"));
+//            bw.write(sb.toString());
+//            bw.flush();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                bw.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+    }
 }
