@@ -1,6 +1,7 @@
 package com.luo.kafka;
 
 
+import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +24,12 @@ public class KafkaConsumerConfig {
 
     private String group1="g1";
     private String group2="g2";
+
+    //创建TopicName为topic1的Topic并设置分区数为8以及副本数为1
+//    @Bean//通过bean创建(bean的名字为initialTopic)
+//    public NewTopic initialTopic() {
+//        return new NewTopic("topic1",8, (short) 1 );
+//    }
 
     @Bean
     public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory1() {

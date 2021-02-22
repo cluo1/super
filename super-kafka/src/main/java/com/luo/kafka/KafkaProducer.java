@@ -20,11 +20,13 @@ public class KafkaProducer {
 
     public void send1(){
         Map<String,Object> map = new HashMap();
-        map.put("super1","super1");
-        for (int i=0;i<2;i++){
-            ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send("topic1",i,"key1", JSONObject.toJSONString(map));
-        }
+        map.put("super","super");
 
+        kafkaTemplate.send("topic1",0,"key1", JSONObject.toJSONString(map));
+        map.put("super1","super1");
+        kafkaTemplate.send("topic1",1,"key2", JSONObject.toJSONString(map));
+
+//        ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send("topic1",i,"key1", JSONObject.toJSONString(map));
 //        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 //            @Override
 //            public void onFailure(Throwable throwable) {
