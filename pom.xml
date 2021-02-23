@@ -17,7 +17,8 @@
         <module>super-gateway</module>
         <module>super-feign</module>
         <module>super-redis</module>
-        <module>super-kafka</module>
+        <module>super-kafka-producer</module>
+        <module>super-kafka-consumer</module>
         <module>super-zookeeper</module>
 <!--        <module>super-plugin</module>-->
 <!--        <module>super-system</module>-->

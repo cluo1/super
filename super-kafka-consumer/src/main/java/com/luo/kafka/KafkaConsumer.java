@@ -14,22 +14,25 @@ public class KafkaConsumer {
     private static final Logger log = LoggerFactory.getLogger(KafkaConsumer.class);
 
     @KafkaListener(topicPartitions ={@TopicPartition(topic = "topic1",partitions = {"0"})}
-        ,containerFactory = "kafkaListenerContainerFactory1")
+        ,containerFactory = "kafkaListenerContainerFactory1"
+//        ,groupId = "g1"
+    )
     public void consumer1(ConsumerRecord consumerRecord){
-        Object value = consumerRecord.value();
-        String jsonString = JSONObject.toJSONString(value);
-        log.info("jsonStr1==========={}",jsonString);
+        long offset = consumerRecord.offset();
+        String val = JSONObject.toJSONString(consumerRecord.value());
+        log.info("consumer1===========offset:{},val:{}",offset,val);
     }
 
-    @KafkaListener(topicPartitions ={@TopicPartition(topic = "topic1",partitions = {"1"}
+    @KafkaListener(topicPartitions ={@TopicPartition(topic = "topic1",partitions = {"0","1"}
 //        ,partitionOffsets = @PartitionOffset(partition = "1", initialOffset = "4")
         )}
-        ,containerFactory = "kafkaListenerContainerFactory2"
+        ,containerFactory = "kafkaListenerContainerFactory1"
+//        ,groupId = "g2"
     )
     public void consumer2(ConsumerRecord consumerRecord){
-        Object value = consumerRecord.value();
-        String jsonString = JSONObject.toJSONString(value);
-        log.info("jsonStr2==========={}",jsonString);
+        long offset = consumerRecord.offset();
+        String val = JSONObject.toJSONString(consumerRecord.value());
+        log.info("consumer2===========offset:{},val:{}",offset,val);
     }
 
 }
