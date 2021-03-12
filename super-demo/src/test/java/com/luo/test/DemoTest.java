@@ -1,12 +1,13 @@
 package com.luo.test;
 
 import com.alibaba.druid.filter.config.ConfigTools;
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 
 import java.io.*;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.*;
 //import org.bytedeco.javacpp.avcodec;
 //import org.bytedeco.javacpp.avformat;
 import org.bytedeco.javacv.*;
@@ -21,7 +22,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Date;
+import java.util.List;
 
 public class DemoTest {
     private static final Logger logger = LoggerFactory.getLogger(DemoTest.class);
@@ -145,7 +146,30 @@ public class DemoTest {
         String strMi = "JyWNHFgyMLrfVTIQMUDDe6xEUv+Tj4nI1ZHJLYDsIHbHxP4h9qB7UX2lKQYIevH9H2fmJrPAHVz3jX/Uv7KxdQ==";
 
         String pwd = ConfigTools.decrypt(key, strMi);
-        System.out.println(pwd);
+//        System.out.println(pwd);
+
+        Map<String , Object> map = new HashMap<>();
+        map.put("31","3");
+        List<String> list = new ArrayList<String>();
+        List<List<String>> list1 = new ArrayList<List<String>>();
+        list.add("11s");
+        list.add("22a");
+        list.add("3");
+        list1.add(list);
+        for (List<String> l:list1){
+            boolean isExits = false;
+            for (String str:l){
+                if(map.get(str)!=null){
+                    isExits = true;
+                }
+            }
+            if (isExits){
+                System.out.println("11");
+            }
+
+        }
+
+
     }
 
     @Test
@@ -193,6 +217,8 @@ public class DemoTest {
 
     @Test
     public void test4() throws Exception {
+
+
         StringBuilder sb = new StringBuilder(" select ");
         BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream("C:\\Users\\chaoluo5\\Desktop\\new 2.txt"), Charset.forName("GBK")));
         String line = null;
@@ -228,4 +254,5 @@ public class DemoTest {
 //            }
 //        }
     }
+
 }
