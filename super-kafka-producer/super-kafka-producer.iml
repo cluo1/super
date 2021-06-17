@@ -8,20 +8,20 @@
       <configuration>
         <webroots />
         <sourceRoots>
-          <root url="file://$MODULE_DIR$/../super-kafka/src/main/java" />
-          <root url="file://$MODULE_DIR$/../super-kafka/src/main/resources" />
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resources" />
         </sourceRoots>
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
-    <output url="file://$MODULE_DIR$/../super-kafka/target/classes" />
-    <output-test url="file://$MODULE_DIR$/../super-kafka/target/test-classes" />
-    <content url="file://$MODULE_DIR$/../super-kafka-producer">
-      <sourceFolder url="file://$MODULE_DIR$/../super-kafka-producer/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../super-kafka-producer/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../super-kafka-producer/src/test/java" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/../super-kafka-producer/target" />
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

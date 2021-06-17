@@ -1,6 +1,6 @@
 package com.luo.user.utils;
 
-import okhttp3.*;
+import com.squareup.okhttp.*;
 
 import java.io.IOException;
 

@@ -1,3 +1,4 @@
+/*
 package com.luo.user.service.impl;
 
 import com.alibaba.fastjson.JSON;
@@ -14,13 +15,15 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+*/
 /**
  * @ClassName : com.iflytek.vie.app.provider.impl.user
  * @Description :
  * @Version : 1.0
  * @Author : lpniu
  * @Date: 2021/3/11 19:58
- */
+ *//*
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -162,4 +165,4 @@ public class UserServiceImpl implements UserService {
 //        session.setAttribute(ticket,resultDto.getData());
         return ticket;
     }
-}
+}*/
