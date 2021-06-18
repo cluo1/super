@@ -64,6 +64,9 @@ fatal： 级别比较高了。重大错误，这种级别你可以直接停止�
             <appender-ref ref="FileLog" />
             <appender-ref ref="RollingFileLog" />
         </Root>
+        <logger name="com.luo" level="INFO" additivity="true">
+            <appender-ref ref="RollingFileLog" />
+        </logger>
         <!-- 第三方日志系统 -->
         <!--过滤掉spring和mybatis的一些无用的DEBUG信息，也可以在spring boot 的logging.level.org.springframework=FATAL设置-->
         <!-- <logger name="org.springframework" level="INFO"></logger> -->

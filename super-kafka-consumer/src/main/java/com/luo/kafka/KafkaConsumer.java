@@ -3,6 +3,7 @@ package com.luo.kafka;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -16,8 +17,7 @@ import java.util.Map;
 
 @Component
 public class KafkaConsumer {
-    private static final Logger log = LoggerFactory.getLogger(KafkaConsumer.class);
-
+    private static final Logger logger = LoggerFactory.getLogger(KafkaConsumer.class);
 
     @KafkaListener(topics = "indexMsgTopic")
     public void consumer1(ConsumerRecord consumerRecord){
@@ -25,7 +25,9 @@ public class KafkaConsumer {
         Object value = consumerRecord.value();
 
         LinkedHashMap infoList = JSONObject.parseObject(value+"",new TypeReference<LinkedHashMap>() {});
-        log.info("consumer1===========offset:{},val:{}",offset,infoList);
+        logger.info("接收任务索引消息数据开始voiceId:{},ruleId:{}",infoList.get("voiceId"),infoList.get("ruleId"));
+
+//        logger.info("consumer1===========offset:{},val:{}",offset,infoList);
     }
 
 

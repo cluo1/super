@@ -1,4 +1,3 @@
-/*
 package com.luo.user.service.impl;
 
 import com.alibaba.fastjson.JSON;
@@ -7,7 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.luo.user.service.UserService;
 import com.luo.user.utils.MD5Utils;
 import com.luo.user.utils.OkHttpCLientUtils;
-import com.luo.user.utils.RedisUtils;
+//import com.luo.user.utils.RedisUtils;
 import com.luo.user.utils.ResultCode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -15,19 +14,47 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-*/
 /**
  * @ClassName : com.iflytek.vie.app.provider.impl.user
  * @Description :
  * @Version : 1.0
  * @Author : lpniu
  * @Date: 2021/3/11 19:58
- *//*
+ */
 
-@Service
+@Service("userServiceImplbak")
 public class UserServiceImpl implements UserService {
+    @Override
+    public String login(String loginName, String passWord, HttpSession session) throws Exception {
+        return null;
+    }
 
-    @Value("${rest.server.url}")
+    @Override
+    public Object getAppInfo() throws Exception {
+        return null;
+    }
+
+    @Override
+    public Object getAuthorities(String xfTicket, HttpSession session) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Object getRoleByAppCodeUserId(String xfTicket, HttpSession session) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Object getUserByOrgId(String xfTicket, HttpSession session) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Object getUserInfo(String xfTicket, HttpSession session) throws Exception {
+        return null;
+    }
+
+   /* @Value("${rest.server.url}")
     private String uapRestServerRrl;
 
     @Value("${cas.client.index}")
@@ -164,5 +191,5 @@ public class UserServiceImpl implements UserService {
         session.setMaxInactiveInterval(2*60*60);
 //        session.setAttribute(ticket,resultDto.getData());
         return ticket;
-    }
-}*/
+    }*/
+}
