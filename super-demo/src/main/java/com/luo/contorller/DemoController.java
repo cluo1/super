@@ -2,6 +2,7 @@ package com.luo.contorller;
 
 import com.luo.entity.User;
 import com.luo.service.ISqlLoaderService;
+import com.luo.service.UserService;
 import com.luo.utils.TestSqlLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,10 @@ public class DemoController {
 
     @Autowired
     private ISqlLoaderService iSqlLoaderService;
+
+    @Autowired
+    private UserService userServiceImpl ;
+
 
     @RequestMapping("/feign")
     public String test(@RequestBody User user) {
