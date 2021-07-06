@@ -23,7 +23,7 @@ public class KafkaProducer {
     public void send1(){
         Map<String,Object> map = new HashMap();
         map.put("super0","super0");
-        kafkaTemplate.send("topic1", JSONObject.toJSONString(map));
+        kafkaTemplate.send("indexMsgTopic", JSONObject.toJSONString(map));
 //
 //        Map<String,Object> map1 = new HashMap();
 //        map1.put("super1","super1");

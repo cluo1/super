@@ -3,7 +3,7 @@ package com.luo.service.impl;
 import com.luo.service.UserService;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
     public UserServiceImpl(){
         System.out.println("This is UserServiceImpl");

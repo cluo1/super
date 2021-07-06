@@ -1,10 +1,13 @@
 package com.luo.contorller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.luo.entity.User;
 import com.luo.service.ISqlLoaderService;
 import com.luo.service.UserService;
-import com.luo.utils.TestSqlLoader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,12 +19,29 @@ import java.util.List;
 @RequestMapping("/demo")
 public class DemoController {
 
+    private Logger log = LoggerFactory.getLogger(DemoController.class);
+
     @Autowired
     private ISqlLoaderService iSqlLoaderService;
 
     @Autowired
-    private UserService userServiceImpl ;
+    private UserService userService ;
+    @Value("${memory.test.count}")
+    private int memoryCount;
 
+    @RequestMapping("/hello")
+    public String test() {
+
+        List<Object> list = new ArrayList<>();
+        while (memoryCount>0){
+            User user = new User(1,memoryCount+"");
+            log.info(JSONObject.toJSONString(user));
+            list.add(user);
+            memoryCount--;
+        }
+
+        return "hello";
+    }
 
     @RequestMapping("/feign")
     public String test(@RequestBody User user) {
@@ -40,11 +60,7 @@ public class DemoController {
         }};
     }
 
-    @RequestMapping("/hello")
-    public String test() {
 
-        return "hello";
-    }
 
     /**
      * @param userName
