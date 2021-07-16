@@ -21,6 +21,21 @@
 
     <dependencies>
         <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <exclusions>
+            <exclusion>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-logging</artifactId>
+            </exclusion>
+            <exclusion>
+                <artifactId>slf4j-api</artifactId>
+                <groupId>org.slf4j</groupId>
+            </exclusion>
+        </exclusions>
+        <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.luo</groupId>
             <artifactId>super-common</artifactId>
             <version>1.0-SNAPSHOT</version>
